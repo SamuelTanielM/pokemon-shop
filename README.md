@@ -33,9 +33,6 @@ Tetapi Anda masih dapat menikmati kartu-kartu pokemon yang keren!
     </li>
     <li>
       <a href="#bagan-request">Bagan Request Client</a>
-      <ul>
-        <li><a href="#penjelasan">Penjelasan</a></li>
-      </ul>
     </li>
     <li>
       <a href="#virtual-environment">Mengapa Menggunakan Virtual Environment</a>
@@ -304,38 +301,62 @@ Pada file ini saya membuat readme.md nya dengan mereferensi https://github.com/o
     <img src="https://github.com/SamuelTanielM/pokemon-shop/blob/main/main/templates/images_html/Bagan%20Request.jpg" alt="To Pokemon Shop" width="950" height="500">
   </a>
 </div>
-Pengguna menuju pada alamat aplikasi yang diinginkan dengan mengetik format URL website https:// pada box alamat website yang biasanya tersedia di atas pada browser. Tindakan tersebut berupa HTTP request yang dikirimkan dan diakses pada server World Wide Web yang tersedia dan mencari alamat yang sesuai dan di routing atau menuju alamat tersebut yang akan masuk ke routing selanjutnya pada urls.py web yang dituju. Pada `urls.py`, terdapat path routing yang mengakses aplikasi main yang isinya `views.py` berupa fungsi yang akan mereturn data, dimana basis data tersebut diatur oleh models.py. Data yang direturn `views.py` dipetakan pada file html yang berada pada folder template. File html berupa tampilan website yang akan ditampilkan kepada user yang kemudian berupa response yang akan direturn ke pengguna.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+Pengguna menuju pada alamat aplikasi yang diinginkan dengan mengetik format URL website https:// pada box alamat website yang biasanya tersedia di atas pada browser. Tindakan tersebut berupa HTTP request yang dikirimkan dan diakses pada server World Wide Web yang tersedia dan mencari alamat yang sesuai dan di routing atau menuju alamat tersebut yang akan masuk ke routing selanjutnya pada urls.py web yang dituju. Pada `urls.py`, terdapat path routing yang mengakses aplikasi main yang isinya `views.py` berupa fungsi yang akan mereturn data, dimana basis data tersebut diatur oleh models.py. Data yang direturn `views.py` dipetakan pada file html yang berada pada folder template. File html berupa tampilan website yang akan ditampilkan kepada user yang kemudian berupa response yang akan direturn ke pengguna. 
 
-<a name="penjelasan"></a>
-#### penjelasan
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <a name="virtual-environment"></a>
 ### Virtual Environment
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+Virtual environment merupakan space terisolasi yang dapat memiliki dependency dan packagesnya masing-masing. Hal ini memungkinkan developer untuk mengerjakan beberapa projek lainnya yang membutuhkan versi library atau package tertentu tanpa mengganggu environment lainnya atau terciptanya konflik untuk dapat berjalan dengan lancar. Cara kerjanya dengan menjalankan program `venv` atau `python -m venv <nama environment>`, kemudian `<nama environment>\Scripts\activate.bat` untuk menjalankan environmentnya pada windows. 
+
 <a name="tanpa-venv"></a>
 #### Apakah bisa membuat aplikasi tanpa virtual environment?
+Pengguna bisa membuat aplikasi tanpa virtual environment, tetapi terdapat kekurangannya atau tantangannya. Contohnya jika terdapat projek yang membutuhkan Django versi tertentu, kemudian django mengalami update, maka Django pada projek tersebut juga terupdate dan dapat mengganggu jalannya program atau dependencies dan packages yang ada terutama dengan projek lain yang membutuhkan hal-hal berbeda.
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <a name="mvc-mvt-mvvm"></a>
 ### Penjelasan MVC, MVT, dan MVVM Serta Perbedaannya
+MVC, MVT, dan MVVM adalah pola desain arsitektur yang bermanfaat untuk mengembangkan aplikasi yang mudah untuk diuji, dikelola, dan dipelihara. Pilihan pola desain yang tepat tergantung pada kebutuhan spesifik aplikasi.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <a name="mvc"></a>
 #### MVC
+MVC adalah pola desain yang paling umum digunakan. Pola ini membagi aplikasi menjadi tiga komponen utama:
+
+Model: Komponen ini bertanggung jawab untuk menyimpan dan memanipulasi data.
+
+View: Komponen ini bertanggung jawab untuk menampilkan semua atau beberapa data ke pengguna.
+
+Controller: Komponen ini bertanggung jawab untuk menerima input dari pengguna dan memperbarui model dan view.
+
+MVC popular digunakan karena mengisolasi logika aplikasi dari interface user dan memiliki penggunaan separation of concerns: pemisahan berbagai aspek atau tanggung jawab dalam aplikasi ke dalam bagian-bagian yang berbeda sehingga kode menjadi lebih terorganisir, mudah dimengerti, dan mudah difix jika ditemukan suatu masalah.
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <a name="mvt"></a>
 #### MVT
+MVT (Model-View-Template), sebuah konsep arsitektur django untuk memisahkan komponen-komponen utama dari sebuah aplikasi. Model berhubungan dengan data dan mengatur interaksi dengan data tersebut. View mengatur tampilan dan mengambil data dari model untuk disajikan kepada pengguna. template merancang tampilan yang akhirnya akan diisi dengan data dari model melalui view.
+
+Perbedaan utama antara MVC dan MVT adalah bahwa controller dalam MVT tidak memperbarui model. Hal ini membuat model lebih mudah untuk diuji, karena model tidak perlu tahu tentang controller.
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <a name="mvvm"></a>
 #### MVVM
+Model View View Model atau MVVM adalah pola desain yang lebih baru yang dikembangkan berdasarkan MVP (Model View Presenter). Dalam MVVM, view model bertanggung jawab untuk menerima input dari pengguna dan memperbarui view. View tidak berinteraksi langsung dengan model atau presenter, tetapi menerima data dari view model.
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <a name="perbedaan"></a>
 #### Perbedaan ketiga-tiganya
+Perbedaan antara MVC dan MVT terdapat pada peran controller. Dalam MVC, controller menerima input dari pengguna dan memperbarui model dan view (serupa dengan MVVM). Dalam MVT, controller menerima input dari pengguna, tetapi tidak memperbarui model. Tugas memperbarui model diserahkan ke view.
+Dalam MVC, controller bertanggung jawab untuk menjaga model dan view tetap sinkron. Dalam MVT, view bertanggung jawab untuk menjaga model dan view tetap sinkron.
+MVC dianggap lebih fleksibel daripada MVT. Ini karena controller dalam MVC dapat menangani berbagai tugas, termasuk memperbarui model dan view. Dalam MVT, controller hanya dapat menangani tugas menerima input dari pengguna.
+
+Sementara itu, perbedaan MVVM dan MVC terdapat pada peran view model. Dalam MVVM, view model menerima input dari pengguna dan memperbarui view. Dalam MVC, controller bertanggung jawab untuk menerima input dari pengguna dan memperbarui view. Dalam MVVM, view model bertanggung jawab untuk menjaga view tetap sinkron. Dalam MVC, controller menjaga view tetap sinkron.
+Sehingga, MVVM lebih modular daripada MVC. Ini karena view model dalam MVVM dapat diuji secara terpisah dari view dan model. Dalam MVC, controller tidak dapat diuji secara terpisah dari view dan model.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
