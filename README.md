@@ -308,8 +308,6 @@ Pengguna menuju pada alamat aplikasi yang diinginkan dengan mengetik format URL 
 
 <a name="virtual-environment"></a>
 ### Virtual Environment
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 Virtual environment merupakan space terisolasi yang dapat memiliki dependency dan packagesnya masing-masing. Hal ini memungkinkan developer untuk mengerjakan beberapa projek lainnya yang membutuhkan versi library atau package tertentu tanpa mengganggu environment lainnya atau terciptanya konflik untuk dapat berjalan dengan lancar. Cara kerjanya dengan menjalankan program `venv` atau `python -m venv <nama environment>`, kemudian `<nama environment>\Scripts\activate.bat` untuk menjalankan environmentnya pada windows. 
 
 <a name="tanpa-venv"></a>
