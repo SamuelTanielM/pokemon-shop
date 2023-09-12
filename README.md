@@ -299,7 +299,12 @@ Pada file ini saya membuat readme.md nya dengan mereferensi https://github.com/o
 
 <a name="bagan-request"></a>
 ### Bagan Request
-
+<div align="center">
+<a href="https://pokemon-shop.adaptable.app/main/">
+    <img src="https://github.com/SamuelTanielM/pokemon-shop/blob/main/main/templates/images_html/Bagan%20Request.jpg" alt="To Pokemon Shop" width="950" height="500">
+  </a>
+</div>
+Pengguna menuju pada alamat aplikasi yang diinginkan dengan mengetik format URL website https:// pada box alamat website yang biasanya tersedia di atas pada browser. Tindakan tersebut berupa HTTP request yang dikirimkan dan diakses pada server World Wide Web yang tersedia dan mencari alamat yang sesuai dan di routing atau menuju alamat tersebut yang akan masuk ke routing selanjutnya pada urls.py web yang dituju. Pada `urls.py`, terdapat path routing yang mengakses aplikasi main yang isinya `views.py` berupa fungsi yang akan mereturn data, dimana basis data tersebut diatur oleh models.py. Data yang direturn `views.py` dipetakan pada file html yang berada pada folder template. File html berupa tampilan website yang akan ditampilkan kepada user yang kemudian berupa response yang akan direturn ke pengguna.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
