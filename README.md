@@ -321,7 +321,6 @@ Pengguna bisa membuat aplikasi tanpa virtual environment, tetapi terdapat kekura
 <a name="mvc-mvt-mvvm"></a>
 ### Penjelasan MVC, MVT, dan MVVM Serta Perbedaannya
 MVC, MVT, dan MVVM adalah pola desain arsitektur yang bermanfaat untuk mengembangkan aplikasi yang mudah untuk diuji, dikelola, dan dipelihara. Pilihan pola desain yang tepat tergantung pada kebutuhan spesifik aplikasi.
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <a name="mvc"></a>
 #### MVC
@@ -335,21 +334,16 @@ Controller: Komponen ini bertanggung jawab untuk menerima input dari pengguna da
 
 MVC popular digunakan karena mengisolasi logika aplikasi dari interface user dan memiliki penggunaan separation of concerns: pemisahan berbagai aspek atau tanggung jawab dalam aplikasi ke dalam bagian-bagian yang berbeda sehingga kode menjadi lebih terorganisir, mudah dimengerti, dan mudah difix jika ditemukan suatu masalah.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <a name="mvt"></a>
 #### MVT
 MVT (Model-View-Template), sebuah konsep arsitektur django untuk memisahkan komponen-komponen utama dari sebuah aplikasi. Model berhubungan dengan data dan mengatur interaksi dengan data tersebut. View mengatur tampilan dan mengambil data dari model untuk disajikan kepada pengguna. template merancang tampilan yang akhirnya akan diisi dengan data dari model melalui view.
 
 Perbedaan utama antara MVC dan MVT adalah bahwa controller dalam MVT tidak memperbarui model. Hal ini membuat model lebih mudah untuk diuji, karena model tidak perlu tahu tentang controller.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <a name="mvvm"></a>
 #### MVVM
 Model View View Model atau MVVM adalah pola desain yang lebih baru yang dikembangkan berdasarkan MVP (Model View Presenter). Dalam MVVM, view model bertanggung jawab untuk menerima input dari pengguna dan memperbarui view. View tidak berinteraksi langsung dengan model atau presenter, tetapi menerima data dari view model.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <a name="perbedaan"></a>
 #### Perbedaan ketiga-tiganya
