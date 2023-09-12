@@ -304,7 +304,7 @@ Pada file ini saya membuat readme.md nya dengan mereferensi https://github.com/o
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <a name="penjelasan"></a>
-# penjelasan
+#### penjelasan
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <a name="virtual-environment"></a>
@@ -312,7 +312,7 @@ Pada file ini saya membuat readme.md nya dengan mereferensi https://github.com/o
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <a name="tanpa-venv"></a>
-## Apakah bisa membuat aplikasi tanpa virtual environment?
+#### Apakah bisa membuat aplikasi tanpa virtual environment?
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <a name="mvc-mvt-mvvm"></a>
@@ -320,17 +320,17 @@ Pada file ini saya membuat readme.md nya dengan mereferensi https://github.com/o
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <a name="mvc"></a>
-## MVC
+#### MVC
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <a name="mvt"></a>
-## MVT
+#### MVT
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <a name="mvvm"></a>
-## MVVM
+#### MVVM
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <a name="perbedaan"></a>
-## Perbedaan ketiga-tiganya
+#### Perbedaan ketiga-tiganya
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
