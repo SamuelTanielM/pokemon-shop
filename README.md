@@ -240,18 +240,59 @@ dari sini bisa membuat repositori github tetapi saya belum membuatnya dan terus 
 
 - [ ] Membuat aplikasi dengan nama main pada proyek tersebut.
 
-kemudian saya kembali kepada direktori `Pokemon_Shop` awal dan membuat direktori baru `main` fungsinya adalah merender website yang diinginkan baik dari tampilan dan dalam pemrosesan datanya
+kemudian saya kembali kepada direktori `Pokemon_Shop` awal dan membuat direktori baru `main` fungsinya adalah merender website yang diinginkan baik dari tampilan dan dalam pemrosesan datanya. Kembali ke terminal saya jalankan line code `python manage.py startapp main` yang akan membuat aplikasi main.
 
 - [ ] Melakukan routing pada proyek agar dapat menjalankan aplikasi main.
+
+setelah pembuatan aplikasi main berhasil, saya menambahkan path main ke `settings.py` pada variabel `INSTALLED_APPS` pada proyek `pokemon_shop` hal ini supaya aplikasi main dapat di routing saat pengguna menggunakan `pokemon_shop`.
+
 - [ ] Membuat model pada aplikasi main dengan nama Item dan memiliki atribut wajib sebagai berikut.
 name sebagai nama item dengan tipe CharField.
 amount sebagai jumlah item dengan tipe IntegerField.
 description sebagai deskripsi item dengan tipe TextField.
 
+Setelah aplikasi main terbuat dan dapat di routing. Saya memodifikasi file `models.py` pada direktori main, file ini berfungsi untuk mendefinisikan struktur data dan menghubungkan basis data proyeknya. Disini saya menambahkan variabel seperti yang diatas, ditambah price dan category karena aspek pembelian kartu pokemon yang berbeda-beda
+
 - [ ] Membuat sebuah fungsi pada views.py untuk dikembalikan ke dalam sebuah template HTML yang menampilkan nama aplikasi serta nama dan kelas kamu.
+
+Pada tahapan ini saya juga membuat direktori `templates` yang isinya `main.html`. Dalam file html tersebut, saya membuat tampilan website yang mau dirender, penggunaan `{{ variabel }}` mengacu pada pemetaan variabel dari `views.py` yang akan direturn ke template HTML pada tahapan selanjutnya. 
+
+Setelah `main.html` terbentuk saya bisa memodifikasi `views.py` yang isinya fungsi yang mengembalikan data yang akan ditampilkan ke pengguna yang dipetakan ke file `main.html`. Pada `views.py` saya membuat variabel untuk nama dan kelas saya, serta tiap aspek pokemon.
+
+#Sebenarnya pada tahapan main.html saya coba pakai css dan javascript namun sayangnya percobaan saya gagal semoga nanti di tutorial dijelaskan
+
 - [ ] Membuat sebuah routing pada urls.py aplikasi main untuk memetakan fungsi yang telah dibuat pada views.py.
+
+Untuk tahapan sebelumnya berjalan maka fungsi pada `views.py` harus dijalankan, fungsi tersebut dijalankan dengan routing dari `urls.py` yang dimasukkan path show_main nya
+```
+from django.urls import path
+from main.views import show_main
+
+app_name = 'main'
+
+urlpatterns = [
+    path('', show_main, name='show_main'),
+]
+```
+tidak lupa, saya juga menambahkan path main pada urls.py pada direktori pokemon_shop supaya dapat diakses main.urls nya dan fungsinya berjalan, seperti berikut:
+```
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('main/', include('main.urls')),
+]
+```
+
 - [ ] Melakukan deployment ke Adaptable terhadap aplikasi yang sudah dibuat sehingga nantinya dapat diakses oleh teman-temanmu melalui Internet.
+
+sebelum deployment, saya pastikan semuanya sudah git add ., git commit, git push, ke github supaya saat di deploy ke adaptable dapat diakses.
+Masuk ke website adaptable, pada app dashboard, create new app, kemudian pilih repositori aplikasi saya yaitu `pokemon-shop` kemudian pilih Python App template karena menggunakan python dan memilih PostgreSQL karena aplikasi yang dibuat menggunakan tipe data tersebut. Karena saya menggunakan python 3.11 saya memilih 3.11 dan memasukkan `python manage.py migrate && gunicorn shopping_list.wsgi` pada start comment yang akan memulai aplikasi pokemon_shop ketika aplikasi dibuka. Setelah itu saya menyalakan HTTP listener  on port kemudian deploy App yang kurang lebih memerlukan waktu sejaman.
+
 - [ ] Membuat sebuah README.md
+
+Pada file ini saya membuat readme.md nya dengan mereferensi https://github.com/othneildrew/Best-README-Template/blob/master/BLANK_README.md sebagai contoh readme yang baik. 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -263,33 +304,33 @@ description sebagai deskripsi item dengan tipe TextField.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <a name="penjelasan"></a>
-### Bagan Request
+# penjelasan
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <a name="virtual-environment"></a>
-### Bagan Request
+### Virtual Environment
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <a name="tanpa-venv"></a>
-### Bagan Request
+## Apakah bisa membuat aplikasi tanpa virtual environment?
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <a name="mvc-mvt-mvvm"></a>
-### Bagan Request
+### Penjelasan MVC, MVT, dan MVVM Serta Perbedaannya
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <a name="mvc"></a>
-### Bagan Request
+## MVC
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <a name="mvt"></a>
-### Bagan Request
+## MVT
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <a name="mvvm"></a>
-### Bagan Request
+## MVVM
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <a name="perbedaan"></a>
-### Bagan Request
+## Perbedaan ketiga-tiganya
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
