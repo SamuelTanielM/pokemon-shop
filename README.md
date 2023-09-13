@@ -328,7 +328,7 @@ Pada file ini saya membuat readme.md nya dengan mereferensi https://github.com/o
 ### Bagan Request
 <div align="center">
 <a href="https://pokemon-shop.adaptable.app/main/">
-    <img src="https://github.com/SamuelTanielM/pokemon-shop/blob/main/main/templates/images_html/Bagan%20Request.jpg" alt="To Pokemon Shop" width="950" height="500">
+    <img src="https://github.com/SamuelTanielM/pokemon-shop/blob/main/main/templates/images_html/Bagan%20Request.jpg" alt="To Pokemon Shop" width="1000" height="500">
   </a>
 </div>
 
