@@ -282,6 +282,8 @@ urlpatterns = [
 ]
 ```
 
+Selain itu saya membuat tests yang mengecek jika website bisa ada, bisa routing ke main, objeknya ada, dan data objek sudah benar atau belum pada `tests.py`
+
 - [ ] Melakukan deployment ke Adaptable terhadap aplikasi yang sudah dibuat sehingga nantinya dapat diakses oleh teman-temanmu melalui Internet.
 
 sebelum deployment, saya pastikan semuanya sudah git add ., git commit, git push, ke github supaya saat di deploy ke adaptable dapat diakses.
