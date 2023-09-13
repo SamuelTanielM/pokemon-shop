@@ -5,6 +5,7 @@ def show_main(request):
     context = {
         'author_name': 'Samuel Taniel Mulyadi',
         'author_class': 'PBP D',
+        'app_name': 'Pokemon Shop',
         'name_card1': 'Mewtwo', 'name_card2': 'Starmie', 'name_card3': 'Eevee', 'name_card4': 'Suicune', 'name_card5': 'Sceptile', 'name_card6': 'Haunter', 'name_card7': 'Samurott', 'name_card8': 'Mimikyu',
         'category1': 'Psychic', 'category2': 'Water', 'category3': 'Normal', 'category4': 'Water', 'category5': 'Grass', 'category6': 'Dark', 'category7': 'Water', 'category8': 'Dark', 
         'price1': 100000, 'price2': 5, 'price3': 2, 'price4': 100, 'price5': 10, 'price6': 10, 'price7': 50, 'price8': 5,
