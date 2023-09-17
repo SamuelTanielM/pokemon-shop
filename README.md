@@ -577,6 +577,11 @@ Kemudian saya mengubah fungsi show main supaya product yang tersimpan di form bi
 def show_main(request):
     products = Product.objects.all()
 
+    if products:
+        last_product = products.last()
+    else:
+        last_product = None
+
     context = {
         'author_info': {
             'name': 'Samuel Taniel Mulyadi',
@@ -593,7 +598,8 @@ def show_main(request):
                 'description': "Mewtwo, the result of an experiment on Mew Pokemon by humans. It wants revenge on humanity, therefore there's only one of it in the world.",
             },
             ...
-        'products': products
+        'products': products,
+        'last_product': last_product,
         ]
     }
 
@@ -612,7 +618,7 @@ def show_main(request):
     return render(request, "main.html", context)
 ```
 
-hal ini mengambil seluruh object product yang tersimpan pada database sehingga dapat diakses tiap data modelnya, pada for loop tersebut setiap input dari form order akan menghitung price productnya dan menentukan gambarnya untuk dimasukkan di html
+hal ini mengambil seluruh object product yang tersimpan pada database sehingga dapat diakses tiap data modelnya, pada for loop tersebut setiap input dari form order akan menghitung price productnya dan menentukan gambarnya untuk dimasukkan di html. Selain itu juga ada last_product untuk memunculkan message ketika konsumer memesan order paling terakhir.
 
 Setelah itu, saya membuat create-product.html supaya ketika ingin membuat produk/ingin mesan order akan dirouting ke html lain
 ```
@@ -640,11 +646,18 @@ Setelah itu, saya membuat create-product.html supaya ketika ingin membuat produk
 Untuk mengakses routing tersebut kita dapat membuat tampilannya di main.html supaya konsumen bisa menuju ke path membuat produk kita buatkan tombol dan juga tabel yang akan menunjukkan order waitlist yang dibuat sehingga konsumen bisa tahu posisinya
 
 ```
+<!-- Order Form -->
 <section id="order">
   <h2>Order</h2>
   <div class="flex_center">
     <fieldset>
-      <legend class="introduction">Order List</legend>     
+      <legend class="introduction">Order List</legend>    
+          {% if last_product %}
+          <h4>
+              Thank you for your order! You have ordered {{ last_product.amount }} {{ last_product.name }} card with a total price of ${{ last_product.price }} at {{ last_product.date_added }}.
+              A reminder for buyers, you are in a waitlist order. First Come First Served. Meanwhile, you can check other cards! We will contact you as soon as possible!
+          </h4>
+          {% endif %}
         <table>
           <tr>
               <th style="text-align: center; padding: 15px;">Display</th>

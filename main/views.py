@@ -9,6 +9,11 @@ from main.models import Product
 def show_main(request):
     products = Product.objects.all()
 
+    if products:
+        last_product = products.last()
+    else:
+        last_product = None
+
     context = {
         'author_info': {
             'name': 'Samuel Taniel Mulyadi',
@@ -81,7 +86,8 @@ def show_main(request):
                 'description': "It is known for its desire to be loved and accepted by humans and other Pokémon, which has led it to disguise itself.",
             },
         ],
-        'products': products
+        'products': products,
+        'last_product': last_product
     }
 
     for product in products:

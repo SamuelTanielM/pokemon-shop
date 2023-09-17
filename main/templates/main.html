@@ -105,7 +105,13 @@
       <h2>Order</h2>
       <div class="flex_center">
         <fieldset>
-          <legend class="introduction">Order List</legend>     
+          <legend class="introduction">Order List</legend>    
+              {% if last_product %}
+              <h4>
+                  Thank you for your order! You have ordered {{ last_product.amount }} {{ last_product.name }} card with a total price of ${{ last_product.price }} at {{ last_product.date_added }}.
+                  A reminder for buyers, you are in a waitlist order. First Come First Served. Meanwhile, you can check other cards! We will contact you as soon as possible!
+              </h4>
+              {% endif %}
             <table>
               <tr>
                   <th style="text-align: center; padding: 15px;">Display</th>
@@ -141,7 +147,7 @@
     
     <a href="{% url 'main:create_product' %}">
         <button>
-            Add New Product
+            Order Card Here!
         </button>
     </a>
   </body>
