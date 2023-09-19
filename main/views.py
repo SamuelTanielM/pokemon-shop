@@ -98,9 +98,15 @@ def show_main(request):
                 total_price = float(card['price']) * int(product.amount)
                 picture = card['picture']
                 break
-            
+    
         product.picture = picture
         product.price = total_price
+
+        if product.name == last_product.name:
+            last_product.price = product.price
+            last_product.picture = product.picture
+            break
+
 
     return render(request, "main.html", context)
 
@@ -116,7 +122,7 @@ def create_product(request):
 
 def delete(request): #delete isi form
     Product.objects.all().delete()
-    return HttpResponse("yoi delete")
+    return HttpResponse("delete products")
 
 def show_xml(request):
     data = Product.objects.all()
