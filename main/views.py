@@ -14,6 +14,13 @@ def show_main(request):
     else:
         last_product = None
 
+    total_amount = 0
+    if products:
+        for product in products:
+            total_amount += product.amount
+    # else:
+    #     total_amount = 0
+
     context = {
         'author_info': {
             'name': 'Samuel Taniel Mulyadi',
@@ -87,7 +94,8 @@ def show_main(request):
             },
         ],
         'products': products,
-        'last_product': last_product
+        'last_product': last_product,
+        'product_amount': total_amount
     }
 
     for product in products:

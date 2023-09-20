@@ -112,6 +112,9 @@
                   A reminder for buyers, you are in a waitlist order. First Come First Served. Meanwhile, you can check other cards! We will contact you as soon as possible!
               </h4>
               {% endif %}
+              {% if product_amount %}
+              <h5>You have ordered {{ product_amount }} in total.</h5>
+              {% endif %}
             <table>
               <tr>
                   <th style="text-align: center; padding: 15px;">Display</th>
