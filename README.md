@@ -1168,7 +1168,7 @@ cookie yang digunakan dapat digunakan untuk mentrack akitivtas online seperti us
 ## Step by Step Checklist Tugas
 <div align="center">
 <a href="http://samuel-taniel-tutorial.pbp.cs.ui.ac.id">
-  <img src="main/templates/Pictures/Tugas3_Web.png" alt="To Pokemon Shop" width="500" height="300">
+  <img src="main/templates/Pictures/Tugas4_Web.png" alt="To Pokemon Shop" width="500" height="300">
 </a>
 </div>
 
@@ -1223,7 +1223,7 @@ def logout_user(request):
     return response
 ```
 
-kemudian ketigas fungsi tersebut digunakan untuk register.html untuk fungsi register, login.html untuk fungsi login pada main/templates dan logout pada main.html dan ketiganyaa di route di url
+kemudian ketigas fungsi tersebut digunakan untuk register.html untuk fungsi register, login.html untuk fungsi login pada main/templates dan logout pada main.html dan ketiganya di route di urls.py pada main.
 
 - [X] Membuat dua akun pengguna dengan masing-masing tiga dummy data menggunakan model yang telah dibuat pada aplikasi sebelumnya untuk setiap akun di lokal.
 
@@ -1243,8 +1243,20 @@ class Product(models.Model):
 ```
 
 Sehingga kita website dijalankan, user yang login hanya akan ditampilkan produk miliknya berikut contoh dua user dengan tiga dummy data berbeda:
+pertama kita buat dahulu 2 akun, contoh 2 akun yaitu pertama kita akses websitenya kemudian akan berada pada halaman login, buat dua akun dengan klik register now yang akan di route ke register dimana kita bisa memasukkan datanya
+```
+Akun pertama
+Username: samuel.taniel
+Password: saljunyacoklat
 
+kemudian balik ke login register now lagi
 
+Akun kedua
+Username: santen.kelapa
+Password: saljunyacoklat
+```
+
+kemudian kita login pada akun pertama dengan kredensial tersebut, dan klik add new product masukkan product yang diinginkan sebanyak 3 kali kemudian logout lalu login pada akun kedua lakukan hal yang sama dengan produk berbeda. Maka jika kita kembali login pada akun pertama, tampilan produk yang dipesan akan berbeda dengan akun kedua.
 
 - [X]  Menghubungkan model Item dengan User.
 Disini saya menggabungkan username user dengan produk sehingga ketika ditampilkan akan menunjukkan item tiap user berbeda sesuai yang di pesan pada fungsi create_product di views.py
@@ -1262,6 +1274,31 @@ def create_product(request):
 ```
 
 - [X] Menampilkan detail informasi pengguna yang sedang logged in seperti username dan menerapkan cookies seperti last login pada halaman utama aplikasi.
+
+Dengan memasukkan data user dengan request pada views.py
+```
+'login_info': {
+    'name': request.user.username,
+    'user': request.user,
+},
+```
+
+kita dapat mengakses di main.html 
+
+```
+<div class="profile_name">
+  <a>Author Info</a>
+  <a style="float: right; padding-right: 1cm;">Login Info</a>
+</div>
+<div class="login_info">
+  <img src="https://cdn-icons-png.flaticon.com/512/1828/1828439.png" width="20" height="20"/>
+  <a>{{ author_info.name }}</a>
+  <a style="float: right; padding-right: 1cm;">{{ login_info.name }}</a>
+  <div class="contact_info">
+    <img src="https://cdn-icons-png.flaticon.com/512/185/185578.png" width="20" height="20"/>
+  {{ author_info.class }}
+</div>
+```
 
 - [X] Tambahkan tombol dan fungsi untuk menambahkan amount suatu objek sebanyak satu dan tombol untuk mengurangi jumlah stok suatu objek sebanyak satu.
 
