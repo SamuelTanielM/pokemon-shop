@@ -3,11 +3,11 @@
 {% block content %}
   <head>
     <title>Pokemon Shop</title>
-    <link rel="stylesheet" href="./style.css"/>
+    <!-- <link rel="stylesheet" href="./style.css"/>
     <script src="./script.js"></script>
     <style>
       
-    </style>
+    </style> -->
   </head>
   <body style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">
     <!-- Navigation Bar -->
@@ -20,10 +20,15 @@
       margin-top:-1cm;
       padding-top: 1cm;
       padding-bottom: 2cm;
-      height: 5mm;">
+      height: 10mm;">
         <div class="profile_name">
+          <a>Author Info</a>
+          <a style="float: right; padding-right: 1cm;">Login Info</a>
+        </div>
+        <div class="login_info">
           <img src="https://cdn-icons-png.flaticon.com/512/1828/1828439.png" width="20" height="20"/>
-          {{ author_info.name }}
+          <a>{{ author_info.name }}</a>
+          <a style="float: right; padding-right: 1cm;">{{ login_info.name }}</a>
           <div class="contact_info">
             <img src="https://cdn-icons-png.flaticon.com/512/185/185578.png" width="20" height="20"/>
           {{ author_info.class }}
@@ -36,6 +41,12 @@
           <a class="topmenu" href="#about-shop">About</a>
           <a class="topmenu" href="#pokemon_cards">Cards</a>
           <a class="topmenu" href="#order">Order</a>
+          <a href="{% url 'main:logout' %}">
+            <button style="float: right;
+              margin-right: 1cm;">
+                Logout
+            </button>
+          </a>
           <hr>
           <p></p>
           <!-- Add the links for Skills, Projects and Recommendation here -->
@@ -55,12 +66,15 @@
               Welcome to {{ app_name }} ! <img src="https://em-content.zobj.net/source/microsoft-teams/363/waving-hand_1f44b.png" width="30px" height="30"/>
           </h1>
           <p>
-              This site is an inventory to manage all the Pokemon cards around the world.
-              It is under heavy development, and the order form doesn't work at the moment.
-              Although, you can still enjoy Pokemon's beautiful cards!
+              Hello Pokemon Trainer! This site is an inventory to manage all the Pokemon cards around the world.
+              It is under heavy development, and the order form is still being worked on!
+              Fortunately, you can still enjoy Pokemon's beautiful cards!
           </p>
       </div>
   </section>
+
+  <hr>
+  <h5>Sesi terakhir login: {{ last_login }}</h5>
               
     <!-- Pokemon Cards -->
     <section id="pokemon_cards">
@@ -117,6 +131,7 @@
               {% endif %}
             <table>
               <tr>
+                  <th style="text-align: center; padding: 15px;">Remove</th>
                   <th style="text-align: center; padding: 15px;">Display</th>
                   <th style="text-align: center; padding: 15px;">Name</th>
                   <th style="text-align: center; padding: 15px;">Amount</th>
@@ -128,18 +143,33 @@
               {% comment %} memperlihatkan data produk di bawah baris ini {% endcomment %}
           
               {% for product in products %}
+                {% if product.user == login_info.user %}
                   <tr> 
+                      <td style="text-align: center; padding: 15px;">
+                        <a href = "/delete_item/{{product.pk}}">
+                        <button>x</button>
+                        </a>
+                      </td>
                       <td style="text-align: center; padding: 15px;">
                         <img src={{product.picture}}
                         alt="{{product.name}}"
                         width="100"
                         height="150"/></td>
                       <td style="text-align: center; padding: 15px;"><h4>{{product.name}}</h4></td>
-                      <td style="text-align: center; padding: 15px;">{{product.amount}}</td>
+                      <td style="text-align: center; padding: 15px;">
+                        <a href = "/decrease_item/{{product.pk}}">
+                          <button>-</button>
+                        </a>
+                        <a>{{product.amount}}</a>
+                        <a href = "/increase_item/{{product.pk}}">
+                          <button>+</button>
+                        </a>
+                      </td>
                       <td style="text-align: center; padding: 15px;">{{product.price}}</td>
                       <td style="text-align: center; padding: 15px;">{{product.description}}</td>
                       <td style="text-align: center; padding: 15px;">{{product.date_added}}</td>
                   </tr>
+                {% endif %}
               {% endfor %}
             </table>
         </fieldset>

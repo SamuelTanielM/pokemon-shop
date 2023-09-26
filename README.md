@@ -2,7 +2,7 @@
 
 <br />
 <div align="center">
-  <a href="https://pokemon-shop.adaptable.app/main/">
+  <a href="http://samuel-taniel-tutorial.pbp.cs.ui.ac.id">
     <img src="main/templates/Pictures/pokeboy.gif" alt="To Pokemon Shop" width="80" height="80">
   </a>
 
@@ -14,7 +14,7 @@
     <a href="https://github.com/SamuelTanielM/pokemon-shop"><strong>Explore the code »</strong></a>
     <br />
     <br />
-    <a href="https://pokemon-shop.adaptable.app/main/">View Site</a>
+    <a href="http://samuel-taniel-tutorial.pbp.cs.ui.ac.id">View Site</a>
     ·
     <a href="https://pbp-fasilkom-ui.github.io/ganjil-2024/assignments/individual/assignment-2">View Assignment</a>
   </p>
@@ -31,6 +31,9 @@ Tetapi Anda masih dapat menikmati kartu-kartu pokemon yang keren! ✨
     </li>
     <li>
       <a href="#tugas-3">Tugas 3 | 🃏 Membuat Form Order Pokemon Shop</a>
+    </li>
+    <li>
+      <a href="#tugas-4">Tugas 4 | 😌 Membuat Reigster dan Login Pokemon Shop</a>
     </li>
   
 <hr>
@@ -71,7 +74,7 @@ Tetapi Anda masih dapat menikmati kartu-kartu pokemon yang keren! ✨
 <a name="step-by-step"></a>
 ## Step by Step
 <div align="center">
-<a href="https://pokemon-shop.adaptable.app/main/">
+<a href="http://samuel-taniel-tutorial.pbp.cs.ui.ac.id">
   <img src="main/templates/Pictures/Tugas2_Web.png" alt="To Pokemon Shop" width="500" height="300">
 </a>
 </div>
@@ -342,7 +345,7 @@ Pada file ini saya membuat readme.md nya dengan mereferensi https://github.com/o
 <a name="bagan-request"></a>
 ### Bagan Request
 <div align="center">
-<a href="https://pokemon-shop.adaptable.app/main/">
+<a href="http://samuel-taniel-tutorial.pbp.cs.ui.ac.id">
   <img src="main/templates/Pictures/Bagan_Request.jpg" alt="To Pokemon Shop" width="1000" height="500">
 </a>
 </div>
@@ -489,7 +492,7 @@ Terakhir, dapat digunakan di berbagai platform dan sistem operasi.
 <a name="step-by-step2"></a>
 ## Step by Step Checklist Tugas
 <div align="center">
-<a href="https://pokemon-shop.adaptable.app/main/">
+<a href="http://samuel-taniel-tutorial.pbp.cs.ui.ac.id">
   <img src="main/templates/Pictures/Tugas3_Web.png" alt="To Pokemon Shop" width="500" height="300">
 </a>
 </div>
@@ -781,5 +784,534 @@ urlpatterns = [
 </div>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<a name="step-by-step2"></a>
+## Step by Step Checklist Tugas
+<div align="center">
+<a href="http://samuel-taniel-tutorial.pbp.cs.ui.ac.id">
+  <img src="main/templates/Pictures/Tugas3_Web.png" alt="To Pokemon Shop" width="500" height="300">
+</a>
+</div>
+
+- [X] Membuat input form untuk menambahkan objek model pada app sebelumnya.
+
+Yang saya lakukan pertama adalah membuat form input datanya dengan membuat `forms.py` pada direktori `main` dengan isi seperti dibawah ini:
+```
+from django import forms
+from main.models import Product
+
+class ProductForm(forms.ModelForm):
+    # Define a list of choices for the "name" field
+    NAME_CHOICES = [
+        ('MewTwo', 'MewTwo'),
+        ('Starmie', 'Starmie'),
+        ('Eevee', 'Eevee'),
+        ('Suicune', 'Suicune'),
+        ('Sceptile', 'Sceptile'),
+        ('Haunter', 'Haunter'),
+        ('Samurott', 'Samurott'),
+        ('Mimikyu', 'Mimikyu'),
+        # Add more choices as needed
+    ]
+
+    # Create a ChoiceField for the "name" field with the predefined choices
+    name = forms.ChoiceField(choices=NAME_CHOICES)
+
+    class Meta:
+        model = Product
+        fields = ["name", "amount", "description"]
+    
+    def clean_amount(self):
+        name = self.cleaned_data.get('name')
+        amount = self.cleaned_data.get('amount')
+
+        # Define the allowable ranges based on the selected name
+        allowable_ranges = {
+            'MewTwo': (0, 1),
+            'Starmie': (0, 100000),
+            'Eevee': (0, 100000),
+            'Suicune': (0, 10000),
+            'Sceptile': (0, 100000),
+            'Haunter': (0, 100000),
+            'Samurott': (0, 50000),
+            'Mimikyu': (0, 100000),
+            # Define ranges for other names here
+        }
+
+        # Check if the selected name is in the allowable_ranges dictionary
+        if name in allowable_ranges:
+            min_amount, max_amount = allowable_ranges[name]
+            if not min_amount <= amount <= max_amount:
+                raise forms.ValidationError(f"The amount for {name} must be between {min_amount} and {max_amount}!")
+        
+        return amount
+```
+
+Pembedahan kodenya, saya ingin memiliki dropdown form dengan nama kartu pokemon, sehingga saya memiliki `NAME_CHOICES` dan menggunakan method ChoiceField dari forms dengan `name = forms.ChoiceField(choices=NAME_CHOICES)`. Sehingga name menjadi dropdown form. Selain itu juga saya ingin membatasi jumlah amount yang dapat dibeli sesuai dengan jumlah amount yang available untuk setiap item contohnya MewTwo hanya tersedia 1 kartu sehingga pembeli maksimum membeli 1 kartu. Kekurangannya saat ada yang mengorder data pada html belum mengurang sehingga user bisa terus-menerus membeli mewtwo walaupun sudah ada yang order.. mungkin bisa dibilang order form ini bersifat waitlist :D. 
+
+kemudian saya membuat productform sehingga input dari user berupa request yang di POST akan tersimpan. 
+pertama saya import library yang ingin saya gunakan,
+```
+from django.http import HttpResponseRedirect
+from main import forms
+from django.urls import reverse
+```
+
+kemudian saya membuat isi data dari input user hal ini dilakukan pada fungsi ini:
+```
+def create_product(request):
+    form = forms.ProductForm(request.POST or None)
+
+    if form.is_valid() and request.method == "POST":
+        form.save()
+        return HttpResponseRedirect(reverse('main:show_main'))
+
+    context = {'form': form}
+    return render(request, "create_product.html", context)
+```
+kode ini akan memvalidasi isi input dari form, dan menyimpan data dari form tersebut. 
+
+Kemudian saya mengubah fungsi show main supaya product yang tersimpan di form bisa terbuat
+```
+def show_main(request):
+    products = Product.objects.all()
+
+    if products:
+        last_product = products.last()
+    else:
+        last_product = None
+
+    context = {
+        'author_info': {
+            'name': 'Samuel Taniel Mulyadi',
+            'class': 'PBP D',
+        },
+        'app_name': 'Pokemon Shop',
+        'cards': [
+            {
+                'picture': ...,
+                'name': 'MewTwo',
+                'category': 'Psychic',
+                'price': 100000,
+                'amount': 1,
+                'description': "Mewtwo, the result of an experiment on Mew Pokemon by humans. It wants revenge on humanity, therefore there's only one of it in the world.",
+            },
+            ...
+        'products': products,
+        'last_product': last_product,
+        ]
+    }
+
+    for product in products:
+        total_price = 0
+        picture = ""
+        for card in context['cards']:
+            if card['name'] == product.name:
+                total_price = float(card['price']) * int(product.amount)
+                picture = card['picture']
+                break
+            
+        product.picture = picture
+        product.price = total_price
+
+    return render(request, "main.html", context)
+```
+
+hal ini mengambil seluruh object product yang tersimpan pada database sehingga dapat diakses tiap data modelnya, pada for loop tersebut setiap input dari form order akan menghitung price productnya dan menentukan gambarnya untuk dimasukkan di html. Selain itu juga ada last_product untuk memunculkan message ketika konsumer memesan order paling terakhir.
+
+Setelah itu, saya membuat create-product.html supaya ketika ingin membuat produk/ingin mesan order akan dirouting ke html lain
+```
+{% extends 'base.html' %} 
+
+{% block content %}
+<h1>Order Your Card Here!</h1>
+<h2>This is a waitlist order, first come first served.</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" value="Add Product"/>
+            </td>
+        </tr>
+    </table>
+</form>
+
+{% endblock %}
+```
+Untuk mengakses routing tersebut kita dapat membuat tampilannya di main.html supaya konsumen bisa menuju ke path membuat produk kita buatkan tombol dan juga tabel yang akan menunjukkan order waitlist yang dibuat sehingga konsumen bisa tahu posisinya
+
+```
+<!-- Order Form -->
+<section id="order">
+  <h2>Order</h2>
+  <div class="flex_center">
+    <fieldset>
+      <legend class="introduction">Order List</legend>    
+          {% if last_product %}
+          <h4>
+              Thank you for your order! You have ordered {{ last_product.amount }} {{ last_product.name }} card with a total price of ${{ last_product.price }} at {{ last_product.date_added }}.
+              A reminder for buyers, you are in a waitlist order. First Come First Served. Meanwhile, you can check other cards! We will contact you as soon as possible!
+          </h4>
+          {% endif %}
+        <table>
+          <tr>
+              <th style="text-align: center; padding: 15px;">Display</th>
+              <th style="text-align: center; padding: 15px;">Name</th>
+              <th style="text-align: center; padding: 15px;">Amount</th>
+              <th style="text-align: center; padding: 15px;">Price (USD)</th>
+              <th style="text-align: center; padding: 15px;">Description</th>
+              <th style="text-align: center; padding: 15px;">Date Added</th>
+          </tr>
+      
+          {% comment %} memperlihatkan data produk di bawah baris ini {% endcomment %}
+      
+          {% for product in products %}
+              <tr> 
+                  <td style="text-align: center; padding: 15px;">
+                    <img src={{product.picture}}
+                    alt="{{product.name}}"
+                    width="100"
+                    height="150"/></td>
+                  <td style="text-align: center; padding: 15px;"><h4>{{product.name}}</h4></td>
+                  <td style="text-align: center; padding: 15px;">{{product.amount}}</td>
+                  <td style="text-align: center; padding: 15px;">{{product.price}}</td>
+                  <td style="text-align: center; padding: 15px;">{{product.description}}</td>
+                  <td style="text-align: center; padding: 15px;">{{product.date_added}}</td>
+              </tr>
+          {% endfor %}
+        </table>
+    </fieldset>
+  </div>
+</section>
+```
+
+dengan begitu, konsumen dapat mengakses path ke create product dengan mudah hanya melalui klik button dan dapat melihat order lain yang telat dibuat
+
+- [X] Tambahkan 5 fungsi views untuk melihat objek yang sudah ditambahkan dalam format HTML, XML, JSON, XML by ID, dan JSON by ID.
+
+Pada file views.py terdapat 6 fungsi, untuk fungsi show html terdapat pada show_main yang akan menampilkan semua html, biasanya serialize digunakan untuk menunjukkan json, api, dan xml saja. Sesuai dengan nama fungsinya show_xml akan menunjukkan objekt produk yang telat dibuat/order dalam bentuk xml, dan seterusnya
+```
+def delete(request): #delete isi form
+    Product.objects.all().delete()
+    return HttpResponse("yoi delete")
+
+def show_xml(request):
+    data = Product.objects.all()
+    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+
+def show_json(request):
+    data = Product.objects.all()
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
+def show_xml_by_id(request, id):
+    data = Product.objects.filter(pk=id)
+    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+
+def show_json_by_id(request, id):
+    data = Product.objects.filter(pk=id)
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+```
+
+fungsi delete akan mendelete products yang sudah dibuat sehingga appnya akan kosong lagi
+
+- [X] Membuat routing URL untuk masing-masing views yang telah ditambahkan pada poin 2.
+
+Saya pertama membuat routing path create-product dengan fungsi yang sudah dibuat pada views dengan mengimport fungsi tersebut pad urls.py pada direktori main supaya order form bisa dibuka
+```
+from main.views import show_main, create_product
+```
+kemudian menambahkan url patternsnya pada urls.py supaya bisa dirouting ke /create-product.
+
+```
+path('create-product', create_product, name='create_product'),
+```
+
+setelah itu menambahkan fungsi-fungsi pada views sisanya ke routing urls.py sehingga menjadi seperti ini
+
+```
+from django.urls import path
+from main.views import show_main, create_product, show_xml, show_json, show_xml_by_id, show_json_by_id, delete
+
+app_name = 'main'
+
+urlpatterns = [
+    path('', show_main, name='show_main'),
+    path('create-product', create_product, name='create_product'),
+    path('xml/', show_xml, name='show_xml'), 
+    path('json/', show_json, name='show_json'), 
+    path('xml/<int:id>/', show_xml_by_id, name='show_xml_by_id'),
+    path('json/<int:id>/', show_json_by_id, name='show_json_by_id'), 
+    path('delete', delete, name="delete")
+]
+```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<a name="screenshoot-postman"></a>
+## Screenshoot 5 fungsi di Postman
+
+➡️ Show HTML:
+<div align="center">
+  <img src="main/templates/Pictures/show_html.png" alt="Show HTML" width="500" height="300">
+</div>
+
+➡️ Show XML:
+<div align="center">
+  <img src="main/templates/Pictures/show_xml.png" alt="Show HTML" width="500" height="300">
+</div>
+
+➡️ Show JSON:
+<div align="center">
+  <img src="main/templates/Pictures/show_json.png" alt="Show HTML" width="500" height="300">
+</div>
+
+➡️ Show XML by ID:
+<div align="center">
+  <img src="main/templates/Pictures/show_xml_by_id.png" alt="Show HTML" width="500" height="300">
+</div>
+
+➡️ Show JSON by ID:
+<div align="center">
+  <img src="main/templates/Pictures/show_json_by_id.png" alt="Show HTML" width="500" height="300">
+</div>
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<hr>
+<hr>
+
+<h3 align="center">Tugas 4: Implementasi Autentikasi, Session, dan Cookies pada Django</h3>
+
+<a name="tugas-3"></a>
+<details>
+<summary>Table of Contents</summary>
+<ol>
+  <li>
+    <a href="#usercreationform">Django UserCreationForm, Kelebihan dan Kekurangan</a>
+  </li>
+  <li>
+    <a href="#autentikasi-dan-otorisasi">Pentingnya Autentikasi dan Otorisasi dan Perbedaannya</a>
+  </li>
+  <li>
+    <a href="#cookies">Cookies dan Pengelolaannya oleh Django</a>
+  </li>
+  <li>
+    <a href="#keamanan-cookies">Keamanan Penggunaan Cookies</a>
+  </li>
+  <li>
+    <a href="#step-by-step3">Implementasi Pembuatan Web</a>
+  </li>
+</ol>
+</details>
+
+
+
+<!-- ABOUT THE PROJECT -->
+
+<a name="usercreationform"></a>
+## Django UserCreationForm beserta Kelebihan dan Kekurangannya
+
+Django UserCreationForm adalah impor formulir bawaan yang memudahkan pembuatan formulir dan memvalidasi informasi pendaftaran pengguna dalam aplikasi web. Dengan formulir ini, pengguna baru dapat mendaftar dengan mudah di situs web Anda tanpa harus menulis kode dari awal. Pada aplikasi ini dibuat template html untuk register dan login, yang menggunakan fungsi dari views yang juga mengintegrasikan cookies sehingga dapat mengetahui data pengguna.
+
+Kelebihan | Kekurangan |
+--- | --- |
+sudah ada built-in keamanan autentikasi usercreationform sehingga mengurangi bahaya dari cyber attack | harus mengintegrasi templatenya untuk form  |
+Dimudahkan untuk dikostumasi user form yang dibutuhkan tetapi ada kekurangannya | Jika aplikasi yang dibuat membutuhkan form yang lebih spesifik atau lebih banyak maka harus membuat fungsi sendiri yang tidak disediakan |
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<a name="autentikasi-dan-otorisasi"></a>
+## Pentingnya Autentikasi dan Otorisasi dan Perbedaannya
+
+Autentikasi dan Otorisasi penting 
+Pada autentikasi, user diverifikasi berdasarkan informasi yang dibuat pada web misalkan register dan login dengan isi username dan passowrd sehingga ketika user login dipastikan bahwa yang login adalah user dan bukan orang lain. Sementara itu, otorisasi adalah sebuah akses yang dapat dilakukan oleh user tergantung pada apa saja akses yang dapat dilakukan pada aplikasi, misalkan akses untuk mengubah suatu produk atau harga, dan banyak hal lainnya. 
+
+Kedua hal ini penting karena kedua hal tersebut berkaitan dengan keamanan, sehingga terhindar dari beberapa bahaya seperti ekstorsi data, dan bahaya lainnya. Selain itu juga, mengatur siapa yang bisa mengakses API website sehingga menghindari penyalahgunaan API. Selain itu, autentikasi juga berguna supaya user dapat memiliki pengalaman yang berbeda dan lebih personal dengan data masing-masing user.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<a name="cookies"></a>
+## Cookies dan Pengelolaannya oleh Django
+Cookie merupakan sebuah informasi maksimum 4kb yang dikirim oleh aplikasi web ke browser yang akan digunakan kembali atau dikirim kembali ke browser dan page request lainnya di masa depan. Cookies digunakan untuk autentikasi, user tracking, dan mengatur preferences pengguna.
+
+Inti cara kerjanya: broswer mengirim request ke server, server mengirimm response berupa cookies ke browser, broswer menyimpan cookie tersebut sehingga setiap mengakses server, cookie yang sama akan digunakan sampai cookie kadaluarsa.
+
+Pada django terdapat built in function untuk set_cookie pada HttpResponseRedirect, pada website ini, digunakan cookie berisi waktu terakhir login user dengan key login_user.
+```
+set_cookie(key, value='', max_age=None, expires=None, path='/', domain=None, secure=None, httponly=False, samesite=None) :
+```
+Kemudian website dapat merequest cookie yang diberikan di awal untuk keperluan di masa depan dengan ```request.COOKIES```, pada aplikasi ini di views.py yang dirouting dari urls.py pada main juga untuk ditampilkan isi last_login pada template main.html
+
+Kemudian terdapat ```delete_cookie``` dengan menerima key untuk menghapus cookie.
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<a name="keamanan-cookies"></a>
+## Keamanan Penggunaan Cookies
+Karena cookies hanyalah informasi kecil yang digunakan oleh website tentang user, cookies secara default aman karena tidak dapat membaca atau menghapus data user, dan biasanya anonim atau tidak mengandung data pribadi pengguna. Terkait jenisnya ada perbedaan pada keamanannya, pada session cookie (default): temporary cookie, cookie tersebut hanya browser yang dapat mengakses dan di delete ketika broswer ditutup sehingga informasi yang digunakan hanyalah sementara. Sementara itu, persistent cookie tersimpan pada komputer pengakses dimana user atau program dapat membuka cookie tersebut sehingga kurang aman.
+
+Sehingga terdapat risiko potensial yang harus diwaspadai yaitu:
+cookie yang digunakan dapat digunakan untuk mentrack akitivtas online seperti user preferences yang dapat digunakan beberapa website seperti e-commerce dan ad/iklan. Sehingga ketika, cookie tersebut diambil oleh seseorang dengan maksud yang jahat mereka dapat menggunakan cookie tersebut untuk kepentingan mereka. Contohnya jika website menjual informasi yang didapat dari cookie ke pihak ketiga.
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<a name="step-by-step3"></a>
+## Step by Step Checklist Tugas
+<div align="center">
+<a href="http://samuel-taniel-tutorial.pbp.cs.ui.ac.id">
+  <img src="main/templates/Pictures/Tugas3_Web.png" alt="To Pokemon Shop" width="500" height="300">
+</a>
+</div>
+
+- [X] Mengimplementasikan fungsi registrasi, login, dan logout untuk memungkinkan pengguna untuk mengakses aplikasi sebelumnya dengan lancar.
+
+Pada website pokemon shop digunakan UserCreationForm impor dari django library
+
+> pada fungsi register UserCreationForm berdasarkan request.POST oleh user berupa input ke dalam QueryDict yang akan disimpan datanya dengan .save() dan sebelumnya di cek dengan is_valid selama formnya valid dan akan menampilkan message kalau akunnya berhasil dibuat
+
+```
+
+def register(request):
+    form = UserCreationForm()
+
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your account has been successfully created! You are now able to order cards or just look around!')
+            return redirect('main:login')
+    context = {'form':form}
+    return render(request, 'register.html', context)
+```
+
+> Pada fungsi login mengimport authenticate dan login, authenticate unutk mengautentikasi pengguna dengan username dan password dari pengguna (request) saat login, dan login digunakan untuk mengambil data user yang sudah diregister dan akan ditampilkan/digunakan untuk data yang personal tiap user yang berbeda
+
+pada fungsi ini juga diset cookienya sesuai dengan jam loginnya untuk mengecek terakhir kali login
+```
+def login_user(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            response = HttpResponseRedirect(reverse("main:show_main")) 
+            response.set_cookie('last_login', str(datetime.datetime.now()))
+            return response
+        else:
+            messages.info(request, 'Sorry Pokemon Trainer, incorrect username or password. Please try again.')
+    context = {}
+    return render(request, 'login.html', context)
+```
+
+> Terakhir terdapat fungsi untuk logout yang menggunakan import logout dari django yang dilengkapi dengan cookie delete sehingga termasuk session cookie/temp cookie
+
+```
+def logout_user(request):
+    logout(request)
+    response = HttpResponseRedirect(reverse('main:login'))
+    response.delete_cookie('last_login')
+    return response
+```
+
+kemudian ketigas fungsi tersebut digunakan untuk register.html untuk fungsi register, login.html untuk fungsi login pada main/templates dan logout pada main.html dan ketiganyaa di route di url
+
+- [X] Membuat dua akun pengguna dengan masing-masing tiga dummy data menggunakan model yang telah dibuat pada aplikasi sebelumnya untuk setiap akun di lokal.
+
+Untuk membuat tiga dummy data yang menggunakan model untuk dua akun saya memanfaatkan model baru dimana tiap produk memiliki atribut user. 
+
+```
+class Product(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+    picture = models.TextField()
+    date_added = models.DateField(auto_now_add=True)
+    amount = models.IntegerField()
+    price = models.IntegerField(blank=True, null=True)
+    allow_range = models.IntegerField(blank=True, null=True)
+    category = models.CharField(max_length=255)
+    description = models.TextField()
+```
+
+Sehingga kita website dijalankan, user yang login hanya akan ditampilkan produk miliknya berikut contoh dua user dengan tiga dummy data berbeda:
+
+
+
+- [X]  Menghubungkan model Item dengan User.
+Disini saya menggabungkan username user dengan produk sehingga ketika ditampilkan akan menunjukkan item tiap user berbeda sesuai yang di pesan pada fungsi create_product di views.py
+```
+def create_product(request):
+    form = forms.ProductForm(request.POST or None)
+
+    if form.is_valid() and request.method == "POST":
+        product = form.save(commit=False)
+        product.user = request.user
+        product.save()
+        return HttpResponseRedirect(reverse('main:show_main'))
+    context = {'form': form}
+    return render(request, "create_product.html", context)
+```
+
+- [X] Menampilkan detail informasi pengguna yang sedang logged in seperti username dan menerapkan cookies seperti last login pada halaman utama aplikasi.
+
+- [X] Tambahkan tombol dan fungsi untuk menambahkan amount suatu objek sebanyak satu dan tombol untuk mengurangi jumlah stok suatu objek sebanyak satu.
+
+Pada checklist bonus ini saya menmanfaatkan atribut pk untuk tiap item sehingga cara kerjanya adalah dengan mencocokan id pk dari request user pada button untuk memanggil fungsi increase_item_amount maka objeknya akan bertambah, sama halnya pada fungsi decrease_item_amount yang akan mengurangi item amount. Pada penjumlahan item yang diorder hanya bsia sesuai dengan maksimal item yang ada, dan decrease_item_amount ketika kurang dari sama dengan 0 akan menghapus itemnya. 
+
+```
+def decrease_item_amount(request, id):
+    products = Product.objects.all()
+    for product in products:
+        if product.pk == id:
+            break
+    
+    product.amount -= 1
+    if (product.amount <= 0):
+        product.delete()
+    product.save()
+    
+    return redirect('main:show_main')
+
+def increase_item_amount(request, id):
+    products = Product.objects.all()
+    for product in products:
+        if product.pk == id:
+            break
+    
+    product.amount += 1
+    if(product.allow_range):
+        if (product.amount > product.allow_range):
+            product.amount -= 1
+    product.save()
+    
+    return redirect('main:show_main')
+```
+
+- [X] Tambahkan tombol dan fungsi untuk menghapus suatu objek dari inventori.
+
+Sama cara pikirnya pada sebelumnya perbedaannya product akan dihapus dengan method delete bawaan Django models
+
+```
+def delete_item(request, id):
+    products = Product.objects.all()
+    for product in products:
+        if product.pk == id:
+            break
+
+    product.delete()
+    
+    return redirect('main:show_main')
+```
+
+
   </ol>
 </details>

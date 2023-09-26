@@ -4,27 +4,37 @@ from django.core import serializers
 from main import forms
 from django.urls import reverse
 from main.models import Product
+from django.shortcuts import redirect
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages  
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
+import datetime
+
+@login_required(login_url='/login')
 # Create your views here.
 def show_main(request):
     products = Product.objects.all()
 
-    if products:
-        last_product = products.last()
-    else:
-        last_product = None
-
+    last_product = None
     total_amount = 0
     if products:
         for product in products:
-            total_amount += product.amount
-    # else:
-    #     total_amount = 0
+            if product.user == request.user:
+                total_amount += product.amount
+                last_product = product
+    else:
+        last_product = None
 
     context = {
         'author_info': {
             'name': 'Samuel Taniel Mulyadi',
             'class': 'PBP D',
+        },
+        'login_info': {
+            'name': request.user.username,
+            'user': request.user,
         },
         'app_name': 'Pokemon Shop',
         'cards': [
@@ -95,7 +105,8 @@ def show_main(request):
         ],
         'products': products,
         'last_product': last_product,
-        'product_amount': total_amount
+        'product_amount': total_amount,
+        'last_login': request.COOKIES['last_login'],
     }
 
     for product in products:
@@ -105,26 +116,32 @@ def show_main(request):
             if card['name'] == product.name:
                 total_price = float(card['price']) * int(product.amount)
                 picture = card['picture']
+                allow_range = card['amount']
                 break
-    
+        
+        product.allow_range = allow_range
         product.picture = picture
         product.price = total_price
+        if product.amount > product.allow_range:
+            product.amount = product.allow_range
 
-        if product.name == last_product.name:
-            last_product.price = product.price
-            last_product.picture = product.picture
-            break
+        if last_product:
+            if product.name == last_product.name:
+                last_product.price = product.price
+                last_product.picture = product.picture
+                break
 
 
     return render(request, "main.html", context)
 
 def create_product(request):
     form = forms.ProductForm(request.POST or None)
-    
-    if form.is_valid() and request.method == "POST":
-        form.save()
-        return HttpResponseRedirect(reverse('main:show_main'))
 
+    if form.is_valid() and request.method == "POST":
+        product = form.save(commit=False)
+        product.user = request.user
+        product.save()
+        return HttpResponseRedirect(reverse('main:show_main'))
     context = {'form': form}
     return render(request, "create_product.html", context)
 
@@ -147,3 +164,74 @@ def show_xml_by_id(request, id):
 def show_json_by_id(request, id):
     data = Product.objects.filter(pk=id)
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
+def register(request):
+    form = UserCreationForm()
+
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your account has been successfully created! You are now able to order cards or just look around!')
+            return redirect('main:login')
+    context = {'form':form}
+    return render(request, 'register.html', context)
+
+def login_user(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            response = HttpResponseRedirect(reverse("main:show_main")) 
+            response.set_cookie('last_login', str(datetime.datetime.now()))
+            return response
+        else:
+            messages.info(request, 'Sorry Pokemon Trainer, incorrect username or password. Please try again.')
+    context = {}
+    return render(request, 'login.html', context)
+
+def logout_user(request):
+    logout(request)
+    response = HttpResponseRedirect(reverse('main:login'))
+    response.delete_cookie('last_login')
+    return response
+
+def decrease_item_amount(request, id):
+    products = Product.objects.all()
+    for product in products:
+        if product.pk == id:
+            break
+    
+    product.amount -= 1
+    if (product.amount <= 0):
+        product.delete()
+    product.save()
+    
+    return redirect('main:show_main')
+
+def increase_item_amount(request, id):
+    products = Product.objects.all()
+    for product in products:
+        if product.pk == id:
+            break
+    
+    product.amount += 1
+    if(product.allow_range):
+        if (product.amount > product.allow_range):
+            product.amount -= 1
+    product.save()
+    
+    return redirect('main:show_main')
+
+def delete_item(request, id):
+    products = Product.objects.all()
+    for product in products:
+        if product.pk == id:
+            break
+
+    product.delete()
+    
+    return redirect('main:show_main')
+
