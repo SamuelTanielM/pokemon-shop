@@ -1,22 +1,87 @@
 {% extends 'base.html' %}
 
 {% block meta %}
+<head>
     <title>Register</title>
+    <!-- <link rel="stylesheet" href="./style.css"/>
+    <script src="./script.js"></script> -->
+    <style>
+      .register{
+        background-image: url('https://i.pinimg.com/originals/40/e4/55/40e45566e5ac1f7b789dcb6567448c9c.gif');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+        padding-top: 10cm;
+        padding-bottom: 10cm;
+        align-items: center;
+        display: grid;
+        justify-content: center;
+      }
+
+      .box{
+        background-color: #6687c9;
+        border: 8px solid #e2c4c4;
+        border-radius: 25px;
+        opacity: 0.9;
+        padding: 3%;
+        flex-wrap: wrap;
+        align-content: center;
+        justify-content: center;
+      }
+
+      .text-box{
+        display: grid;
+        margin-right: 80px;
+        color: rgb(255, 255, 255);
+      }
+
+      .daftar button {
+        background-color: #5ea8c1;
+        border: 1px solid #e2c4c4;
+        color: #f3d3d3;
+        display: block;
+        border-radius: 6px;
+        width: 2in;
+        font-size: 20px;
+        float: right;
+        margin-right: 4%;
+      }
+
+      .login_btn button:hover {
+        background-color: #6a9cad;
+        border: 3px solid #e2c4c4;
+        color: #e2c4c4;
+        display: block;
+        font-weight: bolder;
+        cursor: pointer;
+      }
+
+    </style>
+</head>
 {% endblock meta %}
 
 {% block content %}  
 
-<div class = "login">
-    
-    <h1>Register</h1>  
-
+<div class = "register">
+    <h1 style="text-align: center; margin-bottom: 20px; font-size: 100px; background-color: #6687c9; border-radius: 25px; color: white; opacity: 0.9;">Our Adventure Awaits!</h1>  
+    <h1 style="text-align: center; margin-bottom: 40px; background-color: #6687c9; border-radius: 25px; color: white; opacity: 0.9;">Register Now!</h1>  
+    <div class="box">
         <form method="POST" >  
             {% csrf_token %}  
             <table>  
                 {{ form.as_table }}  
                 <tr>  
                     <td></td>
-                    <td><input type="submit" name="submit" value="Daftar"/></td>  
+                    <td><input type="submit" name="submit" value="Daftar"
+                        style="text-align: center; 
+                        padding-left: 120px; 
+                        padding-right: 120px; 
+                        background-color: rgb(192, 192, 255); margin-top: 20px; margin-bottom: 20px;
+                        border: 3px solid #e2c4c4;
+                        border-radius: 25px;
+                        font-weight: bold;
+                        color: rgb(35, 35, 35);
+                        "/></td>  
                 </tr>  
             </table>  
         </form>
@@ -28,7 +93,7 @@
                 {% endfor %}  
         </ul>   
     {% endif %}
-
+    </div>
 </div>  
 
 {% endblock content %}

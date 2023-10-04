@@ -199,39 +199,32 @@ def logout_user(request):
     return response
 
 def decrease_item_amount(request, id):
-    products = Product.objects.all()
-    for product in products:
-        if product.pk == id:
-            break
+    product = Product.objects.get(pk = id)
     
     product.amount -= 1
     if (product.amount <= 0):
         product.delete()
-    product.save()
+    else:
+        product.save()
     
-    return redirect('main:show_main')
+    return HttpResponseRedirect(reverse('main:show_main'))
 
 def increase_item_amount(request, id):
-    products = Product.objects.all()
-    for product in products:
-        if product.pk == id:
-            break
+    product = Product.objects.get(pk = id)
     
     product.amount += 1
     if(product.allow_range):
         if (product.amount > product.allow_range):
             product.amount -= 1
+
     product.save()
     
-    return redirect('main:show_main')
+    return HttpResponseRedirect(reverse('main:show_main'))
 
 def delete_item(request, id):
-    products = Product.objects.all()
-    for product in products:
-        if product.pk == id:
-            break
+    product = Product.objects.get(pk = id)
 
     product.delete()
     
-    return redirect('main:show_main')
+    return HttpResponseRedirect(reverse('main:show_main'))
 

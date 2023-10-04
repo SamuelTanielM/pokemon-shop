@@ -35,6 +35,9 @@ Tetapi Anda masih dapat menikmati kartu-kartu pokemon yang keren! ✨
     <li>
       <a href="#tugas-4">Tugas 4 | 😌 Membuat Reigster dan Login Pokemon Shop</a>
     </li>
+    <li>
+      <a href="#tugas-5">Tugas 5 | 🖼️ Desain Web menggunakan HTML, CSS dan Framework CSS</a>
+    </li>
   
 <hr>
 <hr>
@@ -1350,5 +1353,388 @@ def delete_item(request, id):
 ```
 
 
+<h3 align="center">Tugas 5: Desain Web menggunakan HTML, CSS dan Framework CSS</h3>
+
+<a name="tugas-5"></a>
+<details>
+<summary>Table of Contents</summary>
+<ol>
+  <li>
+    <a href="#manfaat-element">Manfaat Element Selector dan Kapan Menggunakannya</a>
+  </li>
+  <li>
+    <a href="#tag-html5">HTML5 Tag</a>
+  </li>
+  <li>
+    <a href="#margin-dan-padding">Perbedaan Margin dan Padding</a>
+  </li>
+  <li>
+    <a href="#framework-css">Tailwind dan Bootstrap</a>
+  </li>
+  <li>
+    <a href="#step-by-step4">Checklist Step-by-Step</a>
+  </li>
+</ol>
+</details>
+
+
+
+<!-- ABOUT THE PROJECT -->
+
+<a name="manfaat-element"></a>
+## Manfaat Element Selector dan Kapan Menggunakannya
+
+Element selector digunakan untuk memilih elemen-elemen HTML tertentu di halaman web Anda sehingga Anda dapat mengatur tampilan dan gaya mereka dengan CSS(Cascading Style Sheet). 
+
+### Manfaat Element Selector:
+> Mengontrol Tampilan Elemen; dapat mengubah warna latar belakang, font, ukuran, margin, padding, dan banyak lagi menggunakan CSS dengan memilih elemen-elemen yang ingin Anda gaya.
+
+> Pemisahan Struktur dan Gaya; Element selector membantu memisahkan struktur HTML dan gaya CSS dari halaman web Anda. Ini merupakan prinsip desain yang disebut Separation of Concerns (SoC) pada tugas sebelumnya. Dengan ini, kita dapat membuat perubahan gaya tanpa harus menyentuh struktur HTML, dan sebaliknya.
+
+> Gaya Konsisten; dapat memastikan bahwa elemen-elemen serupa di halaman web memiliki gaya yang konsisten. Misalnya, semua tautan dalam teks memiliki warna yang sama.
+
+> Fleksibilitas; dapat memilih elemen berdasarkan nama elemen (seperti <p> untuk paragraf, <h1> untuk judul level 1, dsb.), kelas (dengan menambahkan atribut class pada elemen HTML), atau ID (dengan menambahkan atribut id pada elemen HTML).
+
+### Kapan Menggunakannya:
+> Element Selector digunakan ketika pengguna ingin mendesain webnya dengan mengubah tampilan elemen-elemennya.
+
+> Untuk menghindari duplikasi gaya/style sehingga misalkan elemen tertentu ingin memiliki gaya yang konsisten pada setiap elemen, maka dapat didefinisikan gayanya.
+
+> Mengatur tampilan pada elemen tertentu saja, karena terdapat inline style, maka elemen tertentu bisa diubah tampilannya sesuai yang diinginkan.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<a name="tag-html5"></a>
+## HTML5 Tag
+
+Terdapat berbagai macam HTML5 Tag yang sudah dipelajari,
+```
+<title> digunakan untuk memberikan judul dari aplikasi/web
+<div>, <section> digunakan untuk memisahkan beberapa element tertentu sesuai bagiannya
+<h1>, ..., <p>, digunakan untuk memberikan teks sesuai dengan jenisnya h1 adalah header pertama sehingga h2 adalah bawahannya.
+<head> biasanya untuk internal css/styling
+<table> untuk membuat table dengan bantuan <td> dan <th>
+<button> menampilkan button
+<img src> untuk menampilkan image
+<script> untuk menggunakan script tertentu pada html
+<link> menyisipkan link pada html
+... dan masih banyak lagi
+```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<a name="margin-dan-padding"></a>
+## Perbedaan Margin dan Padding
+
+Margin digunakan untuk memberikan ruangan di ```luar``` elemen, sementara itu padding digunakan untuk memberikan ruang di ```dalam``` elemen.
+
+Margin tidak berwarna/transparan sehingga di belakangnya bisa ditampilkan background. Padding bisa berwarna, sehingga jika suatu elemen memiliki background, background tersebut mengisi ruangan size elemennya.
+
+Karena margin memberikan ruangan di luar, maka mempengaruhi jarak antar elemen, sementara itu padding berbeda dengan jaraknya karena tepi elemen dengan tepi elemen lainnya masih bersisipan sehingga bukan jarak antar elemen.
+
+Properti pada cssnya margin dan padding
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<a name="framework-css"></a>
+## Tailwind dan Bootstrap
+
+Tailwind CSS | Bootstrap |
+--- | --- |
+Utility-first CSS framework, sehingga gaya elemen kita buat mandiri | Component-based framework plus utility classes, sehingga gaya elemen sudah dibuat tetapi bisa kita edit secara spesifik  |
+Semua style/gayanya berada pada utility classes | Class untuk setiap komponen sudah ditentukan dari Bootstrap |
+Fleksible sehingga dapat diatur sedemikian rupa | Karena sudah dibuat komponen gayanya maka susah untuk diatur |
+Membutuhkan Node.js dan npm untuk setup | Bisa digunakan melalui npm, tetapi juga bisa lewat link |
+Karena harus mandiri sehingga sulit untuk pemula | Karena sudah pre-defined maka mudah untuk dimengerti bagi pemula CSS |
+
+Kapan menggunakan Tailwind dan sebaliknya untuk Bootstrap?
+> Jika pekerjaannya banyak dan deadlinenya cepat, maka Bootstrap yang sudah pre-defined akan lebih cepat dalam hasilnya, walaupun kurang fleksibel, karena Tailwind harus membuat tiap komponen pada elemen dahulu.
+> Jika aplikasi yang dibuat memiliki style spesifik yang diinginkan maka Tailwind lebih baik karena lebih fleksibel, sementara itu Bootstrap akan membuat website terlihat biasa/generic
+> Jika ingin menggunakan UI kit, bootstrap sudah memilikinya dari awal, berbeda dengan tailwind yang harus dibuat sendiri. Sehingga website bisa terlihat konsisten dengan pembuatan website yang cepat.
+
+```reference: https://prismic.io/blog/tailwind-vs-bootstrap```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<a name="step-by-step4"></a>
+## Step by Step Checklist Tugas
+<div align="center">
+<a href="http://samuel-taniel-tutorial.pbp.cs.ui.ac.id">
+  <img src="main/templates/Pictures/Tugas4_Web.png" alt="To Pokemon Shop" width="500" height="300">
+</a>
+</div>
+
+- [X]  Kustomisasi halaman login, register, dan tambah inventori semenarik mungkin.
+Pada kustomasi ini saya menggunakan inline dan internal CSS style, dengan menambahkan berbagai gambar, serta membuat beberapa text menarik contohnya
+```
+    <style>
+      .background-body{
+        background-image: url('https://64.media.tumblr.com/eac4bebac7b60aa0465fba5eb206a8a7/6a05e730fe14085d-2d/s2048x3072/0b51c15d92dcc1d48b35b5060be80b6a8e5400ee.gifv');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+        padding-top: 10cm;
+        padding-bottom: 10cm;
+        margin-bottom: -20px;
+      }
+      .topmenu {
+        color: lightgray;
+        margin: 10px;
+        padding: 20px;
+        font-size: 20px;
+        text-decoration:none;
+      }
+
+      .topmenu:hover {
+        color: white;
+        font-weight: bolder;
+        text-decoration:underline;
+        /* Add the styles here */
+      }
+
+      .login button {
+        background-color: #5ea8c1;
+        border: 1px solid #e2c4c4;
+        color: #f3d3d3;
+        display: block;
+        border-radius: 6px;
+        width: 2in;
+        font-size: 20px;
+        float: right;
+        margin-right: 4%;
+      }
+
+      .login button:hover {
+        background-color: #6a9cad;
+        border: 3px solid #e2c4c4;
+        color: #e2c4c4;
+        display: block;
+        font-weight: bolder;
+        cursor: pointer;
+      }
+
+      .order-card button {
+        background-color: #5ea8c1;
+        border: 1px solid #e2c4c4;
+        color: #f3d3d3;
+        display: block;
+        border-radius: 6px;
+        width: 2in;
+        font-size: 20px;
+        align-content: center;
+        margin-right: 4%;
+      }
+
+      .order-card button:hover {
+        background-color: #6a9cad;
+        border: 3px solid #e2c4c4;
+        color: #e2c4c4;
+        display: block;
+        font-weight: bolder;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+```
+
+dapat dilihat bahwa pada button saya menggunakan button:hover sehingga ketika di hover mengganti warnanya dan menampilkan button yang lebih bagus
+
+Sementara itu pada halaman login dan halaman register saya menggunakan wrap berbeda yaitu flex dan grid. Pada flex content akan bersebalahan pada grid akan berurut.
+
+Pada login:
+```
+    <style>
+      .login{
+        background-image: url('https://i.pinimg.com/originals/71/31/77/713177e7b221e3d2570237268fd19c6e.gif');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+        padding-top: 10cm;
+        padding-bottom: 10cm;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+      }
+
+      .box{
+        background-color: #6687c9;
+        border: 8px solid #e2c4c4;
+        border-radius: 25px;
+        opacity: 0.9;
+        padding: 3%;
+        flex-wrap: wrap;
+        align-content: center;
+      }
+
+      .text-box{
+        display: grid;
+        margin-right: 80px;
+        color: rgb(255, 255, 255);
+      }
+
+      .login button {
+        background-color: #5ea8c1;
+        border: 1px solid #e2c4c4;
+        color: #f3d3d3;
+        display: block;
+        border-radius: 6px;
+        width: 2in;
+        font-size: 20px;
+        float: right;
+        margin-right: 4%;
+      }
+
+      .login_btn button:hover {
+        background-color: #6a9cad;
+        border: 3px solid #e2c4c4;
+        color: #e2c4c4;
+        display: block;
+        font-weight: bolder;
+        cursor: pointer;
+      }
+
+    </style>
+</head>
+```
+
+Pada register:
+```
+<head>
+    <title>Register</title>
+    <!-- <link rel="stylesheet" href="./style.css"/>
+    <script src="./script.js"></script> -->
+    <style>
+      .register{
+        background-image: url('https://i.pinimg.com/originals/40/e4/55/40e45566e5ac1f7b789dcb6567448c9c.gif');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+        padding-top: 10cm;
+        padding-bottom: 10cm;
+        align-items: center;
+        display: grid;
+        justify-content: center;
+      }
+
+      .box{
+        background-color: #6687c9;
+        border: 8px solid #e2c4c4;
+        border-radius: 25px;
+        opacity: 0.9;
+        padding: 3%;
+        flex-wrap: wrap;
+        align-content: center;
+        justify-content: center;
+      }
+
+      .text-box{
+        display: grid;
+        margin-right: 80px;
+        color: rgb(255, 255, 255);
+      }
+
+      .daftar button {
+        background-color: #5ea8c1;
+        border: 1px solid #e2c4c4;
+        color: #f3d3d3;
+        display: block;
+        border-radius: 6px;
+        width: 2in;
+        font-size: 20px;
+        float: right;
+        margin-right: 4%;
+      }
+
+      .login_btn button:hover {
+        background-color: #6a9cad;
+        border: 3px solid #e2c4c4;
+        color: #e2c4c4;
+        display: block;
+        font-weight: bolder;
+        cursor: pointer;
+      }
+
+    </style>
+</head>
+```
+
+Jika dilihat bahwa pengaplikasiannya seperti bootstrap dimana komponennya saya bisa reuse di dari login ke register tetapi seperti tailwind karena membuatnya sendiri.
+
+- [X] Kustomisasi halaman daftar inventori menjadi lebih berwarna maupun menggunakan apporach lain seperti menggunakan Card.
+
+Saya mengatur supaya tampilan tabelnya bagus dan sesuai urutannya pada teks-teksnya
+
+```
+    <!-- Order Form -->
+    <section id="order">
+      <h2 style="color: lightgray; margin-left: 20px;">Order</h2>
+      <div class="flex_center">
+        <fieldset>
+          <legend class="introduction" style="color: lightgray; margin-left: 30px;">Order List</legend>    
+              {% if last_product %}
+              <h4 style="color: lightgray; margin-left: 30px; font-size: 20px;">
+                  Thank you for your order! You have ordered {{ last_product.amount }} {{ last_product.name }} card with a total price of ${{ last_product.price }} at {{ last_product.date_added }}.
+                  A reminder for buyers, you are in a waitlist order. First Come First Served. Meanwhile, you can check other cards! We will contact you as soon as possible!
+              </h4>
+              {% endif %}
+              {% if product_amount %}
+              <h5 style="color: lightgray; margin-left: 30px;">You have ordered {{ product_amount }} in total.</h5>
+              {% endif %}
+            <table style="color: lightgray; margin-left: 30px;">
+              <tr>
+                  <th style="text-align: center; padding: 15px;">Remove</th>
+                  <th style="text-align: center; padding: 15px;">Display</th>
+                  <th style="text-align: center; padding: 15px;">Name</th>
+                  <th style="text-align: center; padding: 15px;">Amount</th>
+                  <th style="text-align: center; padding: 15px;">Price (USD)</th>
+                  <th style="text-align: center; padding: 15px;">Description</th>
+                  <th style="text-align: center; padding: 15px;">Date Added</th>
+              </tr>
+          
+              {% comment %} memperlihatkan data produk di bawah baris ini {% endcomment %}
+          
+              {% for product in products %}
+                {% if product.user == login_info.user %}
+                  <tr> 
+                      <td style="text-align: center; padding: 15px;">
+                        <a href = "/delete_item/{{product.pk}}">
+                        <button>x</button>
+                        </a>
+                      </td>
+                      <td style="text-align: center; padding: 15px;">
+                        <img src={{product.picture}}
+                        alt="{{product.name}}"
+                        width="100"
+                        height="150"/></td>
+                      <td style="text-align: center; padding: 15px;"><h4>{{product.name}}</h4></td>
+                      <td style="text-align: center; padding: 15px;">
+                        <a href = "/decrease_item/{{product.pk}}">
+                          <button>-</button>
+                        </a>
+                        <a>{{product.amount}}</a>
+                        <a href = "/increase_item/{{product.pk}}">
+                          <button>+</button>
+                        </a>
+                      </td>
+                      <td style="text-align: center; padding: 15px;">{{product.price}}</td>
+                      <td style="text-align: center; padding: 15px;">{{product.description}}</td>
+                      <td style="text-align: center; padding: 15px;">{{product.date_added}}</td>
+                  </tr>
+                {% endif %}
+              {% endfor %}
+            </table>
+        </fieldset>
+      </div>
+    </section>
+    
+    <br />
+    
+    <a class="order-card" href="{% url 'main:create_product' %}">
+        <button style="margin-left: 30px;">
+            Order Card Here!
+        </button>
+    </a>
+  </body>
+```
   </ol>
 </details>

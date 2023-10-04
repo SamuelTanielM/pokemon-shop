@@ -1,37 +1,107 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
   <head>
     <title>Pokemon Shop</title>
     <!-- <link rel="stylesheet" href="./style.css"/>
-    <script src="./script.js"></script>
+    <script src="./script.js"></script> -->
     <style>
-      
-    </style> -->
+      .background-body{
+        background-image: url('https://64.media.tumblr.com/eac4bebac7b60aa0465fba5eb206a8a7/6a05e730fe14085d-2d/s2048x3072/0b51c15d92dcc1d48b35b5060be80b6a8e5400ee.gifv');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+        padding-top: 10cm;
+        padding-bottom: 10cm;
+        margin-bottom: -20px;
+      }
+      .topmenu {
+        color: lightgray;
+        margin: 10px;
+        padding: 20px;
+        font-size: 20px;
+        text-decoration:none;
+      }
+
+      .topmenu:hover {
+        color: white;
+        font-weight: bolder;
+        text-decoration:underline;
+        /* Add the styles here */
+      }
+
+      .login button {
+        background-color: #5ea8c1;
+        border: 1px solid #e2c4c4;
+        color: #f3d3d3;
+        display: block;
+        border-radius: 6px;
+        width: 2in;
+        font-size: 20px;
+        float: right;
+        margin-right: 4%;
+      }
+
+      .login button:hover {
+        background-color: #6a9cad;
+        border: 3px solid #e2c4c4;
+        color: #e2c4c4;
+        display: block;
+        font-weight: bolder;
+        cursor: pointer;
+      }
+
+      .order-card button {
+        background-color: #5ea8c1;
+        border: 1px solid #e2c4c4;
+        color: #f3d3d3;
+        display: block;
+        border-radius: 6px;
+        width: 2in;
+        font-size: 20px;
+        align-content: center;
+        margin-right: 4%;
+      }
+
+      .order-card button:hover {
+        background-color: #6a9cad;
+        border: 3px solid #e2c4c4;
+        color: #e2c4c4;
+        display: block;
+        font-weight: bolder;
+        cursor: pointer;
+      }
+    </style>
   </head>
-  <body style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">
+  <body style="background: #181818; color: rgba(255, 255, 255, 0.867);">
     <!-- Navigation Bar -->
     <nav>
-      <div id="home" style="background-color:  #bc0000;
+      <div id="home" style="
+      background-image: url('main/templates/Pictures/rectangle_blue.png');
+      background-color:  #6687c9;
       color:rgb(229, 229, 229);
       padding-bottom: 1cm;
       margin-left:-8px;
+
+      
       margin-right:-1cm;
-      margin-top:-1cm;
-      padding-top: 1cm;
-      padding-bottom: 2cm;
+      margin-top:-35px;
+      padding-left: 30px;
+      padding-top: 50px;
+      padding-bottom: 130px;
       height: 10mm;">
-        <div class="profile_name">
+        <!-- <div class="profile_name">
           <a>Author Info</a>
           <a style="float: right; padding-right: 1cm;">Login Info</a>
-        </div>
+        </div> -->
         <div class="login_info">
           <img src="https://cdn-icons-png.flaticon.com/512/1828/1828439.png" width="20" height="20"/>
-          <a>{{ author_info.name }}</a>
-          <a style="float: right; padding-right: 1cm;">{{ login_info.name }}</a>
+          <a style="font-weight: bold; color: lightgray">{{ author_info.name }}</a>
+          <a style="float: right; padding-right: 2cm; font-weight: bold; color: lightgray">{{ login_info.name }}</a>
           <div class="contact_info">
             <img src="https://cdn-icons-png.flaticon.com/512/185/185578.png" width="20" height="20"/>
-          {{ author_info.class }}
+          <a style="font-weight: bold; color: lightgray">{{ author_info.class }}</a>
         </div>
         <hr>
         <div style="clear:both;"></div>
@@ -41,9 +111,8 @@
           <a class="topmenu" href="#about-shop">About</a>
           <a class="topmenu" href="#pokemon_cards">Cards</a>
           <a class="topmenu" href="#order">Order</a>
-          <a href="{% url 'main:logout' %}">
-            <button style="float: right;
-              margin-right: 1cm;">
+          <a class="login" href="{% url 'main:logout' %}">
+            <button >
                 Logout
             </button>
           </a>
@@ -56,39 +125,41 @@
     </nav>
 
     <!-- About Me -->
-    <section id="about-shop" class="container" style="display: flex; justify-content: center; align-items: center; text-align: center;">
+    <section id="about-shop" class="background-body" style="display: grid; justify-content: center; align-items: center; text-align: center;">
       <div>
-          <img src="https://64.media.tumblr.com/088786d466c3a315d6043b8e59d96770/tumblr_msu2ojWkqz1scncwdo1_500.gif" class="profile_image" width="100" height="100" style="margin: 0 auto; display: block;">
+          <img src="https://64.media.tumblr.com/088786d466c3a315d6043b8e59d96770/tumblr_msu2ojWkqz1scncwdo1_500.gif" class="profile_image" width="100" height="100" style="margin: 0 auto; display: grid;">
       </div>
-  
-      <div>
-          <h1>
+      
+      <div style="color: rgb(255, 200, 209); margin-left: 4cm; margin-right: 4cm;">
+          <h1 style="font-weight: bolder;">
               Welcome to {{ app_name }} ! <img src="https://em-content.zobj.net/source/microsoft-teams/363/waving-hand_1f44b.png" width="30px" height="30"/>
           </h1>
-          <p>
+          <p style="font-weight: bold;">
               Hello Pokemon Trainer! This site is an inventory to manage all the Pokemon cards around the world.
               It is under heavy development, and the order form is still being worked on!
               Fortunately, you can still enjoy Pokemon's beautiful cards!
           </p>
       </div>
   </section>
-
-  <hr>
-  <h5>Sesi terakhir login: {{ last_login }}</h5>
+  <div style="background-color:#6687c9">
+    <hr style="color: lightgray">
+    <h5 style="color: lightgray; margin-left: 20px;">Sesi terakhir login: {{ last_login }}</h5>
+    <hr style="color: lightgray">
+  </div>
+  
               
     <!-- Pokemon Cards -->
     <section id="pokemon_cards">
-      <hr>
-      <h2>Cards Around The World</h2>
+      <h2 style="color: lightgray; margin-left: 20px;">Cards Around The World</h2>
       <div style="clear:both;"></div>
 
       <div class="all_skills">
         <div class="skill">
           <table style="table-layout: fixed;
-          width: 1800px;">
+          width: 1800px; margin-left: 20px;">
             <tr>
               {% for card in cards %}
-              <th>
+              <th style="text-align: center;">
                 <h4>{{card.name}}</h4>
               </th>
               {% endfor %}
@@ -116,20 +187,20 @@
 
     <!-- Order Form -->
     <section id="order">
-      <h2>Order</h2>
+      <h2 style="color: lightgray; margin-left: 20px;">Order</h2>
       <div class="flex_center">
         <fieldset>
-          <legend class="introduction">Order List</legend>    
+          <legend class="introduction" style="color: lightgray; margin-left: 30px;">Order List</legend>    
               {% if last_product %}
-              <h4>
+              <h4 style="color: lightgray; margin-left: 30px; font-size: 20px;">
                   Thank you for your order! You have ordered {{ last_product.amount }} {{ last_product.name }} card with a total price of ${{ last_product.price }} at {{ last_product.date_added }}.
                   A reminder for buyers, you are in a waitlist order. First Come First Served. Meanwhile, you can check other cards! We will contact you as soon as possible!
               </h4>
               {% endif %}
               {% if product_amount %}
-              <h5>You have ordered {{ product_amount }} in total.</h5>
+              <h5 style="color: lightgray; margin-left: 30px;">You have ordered {{ product_amount }} in total.</h5>
               {% endif %}
-            <table>
+            <table style="color: lightgray; margin-left: 30px;">
               <tr>
                   <th style="text-align: center; padding: 15px;">Remove</th>
                   <th style="text-align: center; padding: 15px;">Display</th>
@@ -178,8 +249,8 @@
     
     <br />
     
-    <a href="{% url 'main:create_product' %}">
-        <button>
+    <a class="order-card" href="{% url 'main:create_product' %}">
+        <button style="margin-left: 30px;">
             Order Card Here!
         </button>
     </a>
