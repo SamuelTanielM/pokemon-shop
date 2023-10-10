@@ -38,6 +38,9 @@ Tetapi Anda masih dapat menikmati kartu-kartu pokemon yang keren! ✨
     <li>
       <a href="#tugas-5">Tugas 5 | 🖼️ Desain Web menggunakan HTML, CSS dan Framework CSS</a>
     </li>
+    <li>
+      <a href="#tugas-6">Tugas 6 | 🙌 JavaScript dan Asynchronous JavaScript</a>
+    </li>
   
 <hr>
 <hr>
@@ -1393,7 +1396,7 @@ Element selector digunakan untuk memilih elemen-elemen HTML tertentu di halaman 
 
 > Gaya Konsisten; dapat memastikan bahwa elemen-elemen serupa di halaman web memiliki gaya yang konsisten. Misalnya, semua tautan dalam teks memiliki warna yang sama.
 
-> Fleksibilitas; dapat memilih elemen berdasarkan nama elemen (seperti <p> untuk paragraf, <h1> untuk judul level 1, dsb.), kelas (dengan menambahkan atribut class pada elemen HTML), atau ID (dengan menambahkan atribut id pada elemen HTML).
+> Fleksibilitas; dapat memilih elemen berdasarkan nama elemen (seperti </p/> untuk paragraf, </h1/> untuk judul level 1, dsb.), kelas (dengan menambahkan atribut class pada elemen HTML), atau ID (dengan menambahkan atribut id pada elemen HTML).
 
 ### Kapan Menggunakannya:
 > Element Selector digunakan ketika pengguna ingin mendesain webnya dengan mengubah tampilan elemen-elemennya.
@@ -1736,5 +1739,67 @@ Saya mengatur supaya tampilan tabelnya bagus dan sesuai urutannya pada teks-teks
     </a>
   </body>
 ```
+
+
+<h3 align="center">Tugas 6: JavaScript dan Asynchronous JavaScript</h3>
+
+<a name="tugas-6"></a>
+<details>
+<summary>Table of Contents</summary>
+<ol>
+  <li>
+    <a href="#async-sync">Perbedaan antara Asynchronous Programming dengan Synchronous Programming</a>
+  </li>
+  <li>
+    <a href="#paradigma-event">Paradigma Event-Driven Programming</a>
+  </li>
+  <li>
+    <a href="#async-prog">Penerapan Asynchronous Programming pada AJAX</a>
+  </li>
+  <li>
+    <a href="#api-jquery">Perbedaan Fetch API dan Library JQuery, Manakah yang Lebih Bagus?</a>
+  </li>
+  <li>
+    <a href="#step-by-step5">Checklist Step-by-Step</a>
+  </li>
+</ol>
+</details>
+
+
+
+<!-- ABOUT THE PROJECT -->
+
+<a name="async-sync"></a>
+## Perbedaan antara Asynchronous Programming dengan Synchronous Programming
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<a name="paradigma-event"></a>
+## Paradigma Event-Driven Programming
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<a name="async-prog"></a>
+## Penerapan Asynchronous Programming pada AJAX
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<a name="api-jquery"></a>
+## Perbedaan Fetch API dan Library JQuery, Manakah yang Lebih Bagus?
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<a name="step-by-step5"></a>
+## Step by Step Checklist Tugas
+<div align="center">
+<a href="http://samuel-taniel-tutorial.pbp.cs.ui.ac.id">
+  <img src="main/templates/Pictures/Tugas6_Web.png" alt="To Pokemon Shop" width="500" height="300">
+</a>
+</div>
+
+- [X]  
   </ol>
 </details>

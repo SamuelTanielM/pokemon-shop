@@ -73,6 +73,7 @@
         cursor: pointer;
       }
     </style>
+    <script>src= "https://cdn.tailwindcss.com" </script> 
   </head>
   <body style="background: #181818; color: rgba(255, 255, 255, 0.867);">
     <!-- Navigation Bar -->
@@ -98,7 +99,7 @@
         <div class="login_info">
           <img src="https://cdn-icons-png.flaticon.com/512/1828/1828439.png" width="20" height="20"/>
           <a style="font-weight: bold; color: lightgray">{{ author_info.name }}</a>
-          <a style="float: right; padding-right: 2cm; font-weight: bold; color: lightgray">{{ login_info.name }}</a>
+          <a style="float: right; padding-right: 2cm; font-weight: bold; color: lightgray">{{ login_info.user }}</a>
           <div class="contact_info">
             <img src="https://cdn-icons-png.flaticon.com/512/185/185578.png" width="20" height="20"/>
           <a style="font-weight: bold; color: lightgray">{{ author_info.class }}</a>
@@ -130,11 +131,11 @@
           <img src="https://64.media.tumblr.com/088786d466c3a315d6043b8e59d96770/tumblr_msu2ojWkqz1scncwdo1_500.gif" class="profile_image" width="100" height="100" style="margin: 0 auto; display: grid;">
       </div>
       
-      <div style="color: rgb(255, 200, 209); margin-left: 4cm; margin-right: 4cm;">
-          <h1 style="font-weight: bolder;">
+      <div style="color: rgb(255, 200, 209); margin-left: 6cm; margin-right: 6cm;">
+          <h1 style="font-weight: bolder; font-size: 50px;">
               Welcome to {{ app_name }} ! <img src="https://em-content.zobj.net/source/microsoft-teams/363/waving-hand_1f44b.png" width="30px" height="30"/>
           </h1>
-          <p style="font-weight: bold;">
+          <p style="font-weight: bold; font-size: 25px;">
               Hello Pokemon Trainer! This site is an inventory to manage all the Pokemon cards around the world.
               It is under heavy development, and the order form is still being worked on!
               Fortunately, you can still enjoy Pokemon's beautiful cards!
@@ -200,60 +201,137 @@
               {% if product_amount %}
               <h5 style="color: lightgray; margin-left: 30px;">You have ordered {{ product_amount }} in total.</h5>
               {% endif %}
-            <table style="color: lightgray; margin-left: 30px;">
-              <tr>
-                  <th style="text-align: center; padding: 15px;">Remove</th>
-                  <th style="text-align: center; padding: 15px;">Display</th>
-                  <th style="text-align: center; padding: 15px;">Name</th>
-                  <th style="text-align: center; padding: 15px;">Amount</th>
-                  <th style="text-align: center; padding: 15px;">Price (USD)</th>
-                  <th style="text-align: center; padding: 15px;">Description</th>
-                  <th style="text-align: center; padding: 15px;">Date Added</th>
-              </tr>
-          
-              {% comment %} memperlihatkan data produk di bawah baris ini {% endcomment %}
-          
-              {% for product in products %}
-                {% if product.user == login_info.user %}
-                  <tr> 
-                      <td style="text-align: center; padding: 15px;">
-                        <a href = "/delete_item/{{product.pk}}">
-                        <button>x</button>
-                        </a>
-                      </td>
-                      <td style="text-align: center; padding: 15px;">
-                        <img src={{product.picture}}
-                        alt="{{product.name}}"
-                        width="100"
-                        height="150"/></td>
-                      <td style="text-align: center; padding: 15px;"><h4>{{product.name}}</h4></td>
-                      <td style="text-align: center; padding: 15px;">
-                        <a href = "/decrease_item/{{product.pk}}">
-                          <button>-</button>
-                        </a>
-                        <a>{{product.amount}}</a>
-                        <a href = "/increase_item/{{product.pk}}">
-                          <button>+</button>
-                        </a>
-                      </td>
-                      <td style="text-align: center; padding: 15px;">{{product.price}}</td>
-                      <td style="text-align: center; padding: 15px;">{{product.description}}</td>
-                      <td style="text-align: center; padding: 15px;">{{product.date_added}}</td>
-                  </tr>
-                {% endif %}
-              {% endfor %}
-            </table>
+            <table id="product_table" style="color: lightgray; margin-left: 30px; background-color: black; width: 90%; border-radius: 25px;"></table>
+            
         </fieldset>
       </div>
     </section>
     
     <br />
+    <div style="display: flex;">
+      <button style="margin-left: 30px; margin-bottom: 30px;
+        background-color: #5ea8c1;
+        border: 1px solid #e2c4c4;
+        color: #f3d3d3;
+        display: block;
+        border-radius: 6px;
+        width: 3in;
+        font-size: 20px;
+        align-content: center;
+        margin-right: 4%;" 
+      type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Order Card Here using AJAX!</button>
     
-    <a class="order-card" href="{% url 'main:create_product' %}">
-        <button style="margin-left: 30px;">
-            Order Card Here!
-        </button>
-    </a>
+      <a class="order-card" href="{% url 'main:create_product' %}">
+          <button style="margin-left: -40px; margin-bottom: 30px; height: 43px;">
+              Order Card Here!
+          </button>
+      </a>
+    </div>
+    
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Order New Pokemon Card!</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  <form id="form" onsubmit="return false;">
+                      {% csrf_token %}
+                      <div class="mb-3">
+                          <label for="name" class="col-form-label" style="color: #181818;">Name: (Dropdown Box)</label>
+                          <select class="form-control" id="name" name="name">
+                            {% for choice in cards %}
+                                <option value="{{ choice.name }}">{{ choice.name }}</option>
+                            {% endfor %}
+                        </select>
+                      </div>
+                      <div class="mb-3">
+                          <label for="amount" class="col-form-label"style="color: #181818;">Amount:</label>
+                          <input type="number" class="form-control" id="amount" name="amount"></input>
+                      </div>
+                      <div class="mb-3">
+                          <label for="description" class="col-form-label" style="color: #181818;">Description:</label>
+                          <textarea class="form-control" id="description" name="description"></textarea>
+                      </div>
+                  </form>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Product</button>
+              </div>
+            </div>
+        </div>
+      </div>
+  <script>
+    async function getProducts() {
+        return fetch("{% url 'main:get_product_json' %}").then((res) => res.json())
+    }
+
+    async function refreshProducts() {
+        document.getElementById("product_table").innerHTML = ""
+        const products = await getProducts()
+        var login_info = {
+          user: "{{ request.user.id }}",  
+        };
+
+        let htmlString = `<tr style="background-color: #5ea8c1;">
+            <th style="text-align: center; padding: 15px;">Remove</th>
+            <th style="text-align: center; padding: 15px;">Display</th>
+            <th style="text-align: center; padding: 15px;">Name</th>
+            <th style="text-align: center; padding: 15px;">Amount</th>
+            <th style="text-align: center; padding: 15px;">Price (USD)</th>
+            <th style="text-align: center; padding: 15px;">Description</th>
+            <th style="text-align: center; padding: 15px;">Date Added</th>
+        </tr>`
+        products.forEach((item) => { 
+          if (item.fields.user == login_info.user){
+            htmlString += `<tr>
+                <td style="text-align: center; padding: 15px;">
+                    <a href="/delete_item/${item.pk}">
+                        <button style="background-color: rgb(255, 207, 207); border-radius: 25px; font-size: 10px">❌</button>
+                    </a>
+                </td>
+                <td style="text-align: center; padding: 15px;">
+                    <img src="${item.fields.picture}" alt="${item.fields.name}" width="100" height="150"/>
+                </td>
+                <td style="text-align: center; padding: 15px;"><h4>${item.fields.name}</h4></td>
+                <td style="text-align: center; padding: 15px;">
+                    <a href="/decrease_item/${item.pk}">
+                        <button style="background-color: rgb(255, 207, 207); border-radius: 25px; font-size: 10px">➖</button>
+                    </a>
+                    <a>${item.fields.amount}</a>
+                    <a href="/increase_item/${item.pk}">
+                        <button style="background-color: rgb(197, 255, 201); border-radius: 25px; font-size: 10px">➕</button>
+                    </a>
+                </td>
+                <td style="text-align: center; padding: 15px;">${item.fields.price}</td>
+                <td style="text-align: center; padding: 15px;">${item.fields.description}</td>
+                <td style="text-align: center; padding: 15px;">${item.fields.date_added}</td>
+            </tr>`;
+        }
+      }); 
+        
+        document.getElementById("product_table").innerHTML = htmlString
+    }
+
+    function addProduct() {
+        fetch("{% url 'main:add_product_ajax' %}", {
+            method: "POST",
+            body: new FormData(document.querySelector('#form'))
+        }).then(refreshProducts)
+
+        document.getElementById("form").reset()
+        return false
+    }
+
+    document.getElementById("button_add").onclick = addProduct
+    refreshProducts();
+    
+
+  </script>
+
   </body>
 
 {% endblock content %}
