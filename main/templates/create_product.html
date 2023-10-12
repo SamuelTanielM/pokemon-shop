@@ -1,20 +1,88 @@
 {% extends 'base.html' %} 
 
 {% block content %}
-<h1>Order Your Card Here!</h1>
-<h2>This is a waitlist order, first come first served.</h2>
 
-<form method="POST">
-    {% csrf_token %}
-    <table>
-        {{ form.as_table }}
-        <tr>
-            <td></td>
-            <td>
-                <input type="submit" value="Add Product"/>
-            </td>
-        </tr>
-    </table>
-</form>
+<head>
+    <title>Order New card!</title>
+    <!-- <link rel="stylesheet" href="./style.css"/>
+    <script src="./script.js"></script> -->
+    <style>
+      .login{
+        background-image: url('https://i.pinimg.com/originals/71/31/77/713177e7b221e3d2570237268fd19c6e.gif');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+        padding-top: 10cm;
+        padding-bottom: 10cm;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+      }
+
+      .box{
+        background-color: #6687c9;
+        border: 8px solid #e2c4c4;
+        border-radius: 25px;
+        opacity: 0.9;
+        padding: 3%;
+        flex-wrap: wrap;
+        align-content: center;
+      }
+
+      .text-box{
+        display: grid;
+        margin-right: 80px;
+        color: rgb(255, 255, 255);
+        background-color: #9064ff;
+        opacity: 90%;
+      }
+
+      .login button {
+        background-color: #5ea8c1;
+        border: 1px solid #e2c4c4;
+        color: #f3d3d3;
+        display: block;
+        border-radius: 6px;
+        width: 2in;
+        font-size: 20px;
+        float: right;
+        margin-right: 4%;
+      }
+
+      .login_btn button:hover {
+        background-color: #6a9cad;
+        border: 3px solid #e2c4c4;
+        color: #e2c4c4;
+        display: block;
+        font-weight: bolder;
+        cursor: pointer;
+      }
+
+    </style>
+</head>
+
+<body style="background-color: black;">
+    <div class = "login">
+        <div class = "text-box">
+            <h1>Order Your Card Here!</h1>
+            <h2>This is a waitlist order, first come first served.</h2>
+        </div>
+
+        <div class = "box">
+            <form method="POST">
+                {% csrf_token %}
+                <table>
+                    {{ form.as_table }}
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input type="submit" value="Add Product"/>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</body>
 
 {% endblock %}
