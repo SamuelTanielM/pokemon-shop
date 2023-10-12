@@ -2,7 +2,7 @@
 
 <br />
 <div align="center">
-  <a href="http://samuel-taniel-tutorial.pbp.cs.ui.ac.id">
+  <a href="http://samuel-taniel-tugas.pbp.cs.ui.ac.id">
     <img src="main/templates/Pictures/pokeboy.gif" alt="To Pokemon Shop" width="80" height="80">
   </a>
 
@@ -14,7 +14,7 @@
     <a href="https://github.com/SamuelTanielM/pokemon-shop"><strong>Explore the code »</strong></a>
     <br />
     <br />
-    <a href="http://samuel-taniel-tutorial.pbp.cs.ui.ac.id">View Site</a>
+    <a href="http://samuel-taniel-tugas.pbp.cs.ui.ac.id">View Site</a>
     ·
     <a href="https://pbp-fasilkom-ui.github.io/ganjil-2024/assignments/individual/assignment-2">View Assignment</a>
   </p>
@@ -80,7 +80,7 @@ Tetapi Anda masih dapat menikmati kartu-kartu pokemon yang keren! ✨
 <a name="step-by-step"></a>
 ## Step by Step
 <div align="center">
-<a href="http://samuel-taniel-tutorial.pbp.cs.ui.ac.id">
+<a href="http://samuel-taniel-tugas.pbp.cs.ui.ac.id">
   <img src="main/templates/Pictures/Tugas2_Web.png" alt="To Pokemon Shop" width="500" height="300">
 </a>
 </div>
@@ -351,7 +351,7 @@ Pada file ini saya membuat readme.md nya dengan mereferensi https://github.com/o
 <a name="bagan-request"></a>
 ### Bagan Request
 <div align="center">
-<a href="http://samuel-taniel-tutorial.pbp.cs.ui.ac.id">
+<a href="http://samuel-taniel-tugas.pbp.cs.ui.ac.id">
   <img src="main/templates/Pictures/Bagan_Request.jpg" alt="To Pokemon Shop" width="1000" height="500">
 </a>
 </div>
@@ -498,7 +498,7 @@ Terakhir, dapat digunakan di berbagai platform dan sistem operasi.
 <a name="step-by-step2"></a>
 ## Step by Step Checklist Tugas
 <div align="center">
-<a href="http://samuel-taniel-tutorial.pbp.cs.ui.ac.id">
+<a href="http://samuel-taniel-tugas.pbp.cs.ui.ac.id">
   <img src="main/templates/Pictures/Tugas3_Web.png" alt="To Pokemon Shop" width="500" height="300">
 </a>
 </div>
@@ -797,7 +797,7 @@ urlpatterns = [
 <a name="step-by-step2"></a>
 ## Step by Step Checklist Tugas
 <div align="center">
-<a href="http://samuel-taniel-tutorial.pbp.cs.ui.ac.id">
+<a href="http://samuel-taniel-tugas.pbp.cs.ui.ac.id">
   <img src="main/templates/Pictures/Tugas3_Web.png" alt="To Pokemon Shop" width="500" height="300">
 </a>
 </div>
@@ -1173,7 +1173,7 @@ cookie yang digunakan dapat digunakan untuk mentrack akitivtas online seperti us
 <a name="step-by-step3"></a>
 ## Step by Step Checklist Tugas
 <div align="center">
-<a href="http://samuel-taniel-tutorial.pbp.cs.ui.ac.id">
+<a href="http://samuel-taniel-tugas.pbp.cs.ui.ac.id">
   <img src="main/templates/Pictures/Tugas4_Web.png" alt="To Pokemon Shop" width="500" height="300">
 </a>
 </div>
@@ -1462,8 +1462,8 @@ Kapan menggunakan Tailwind dan sebaliknya untuk Bootstrap?
 <a name="step-by-step4"></a>
 ## Step by Step Checklist Tugas
 <div align="center">
-<a href="http://samuel-taniel-tutorial.pbp.cs.ui.ac.id">
-  <img src="main/templates/Pictures/Tugas4_Web.png" alt="To Pokemon Shop" width="500" height="300">
+<a href="http://samuel-taniel-tugas.pbp.cs.ui.ac.id">
+  <img src="main/templates/Pictures/Tugas5_Web.png" alt="To Pokemon Shop" width="500" height="300">
 </a>
 </div>
 
@@ -1742,6 +1742,7 @@ Saya mengatur supaya tampilan tabelnya bagus dan sesuai urutannya pada teks-teks
 
 
 <h3 align="center">Tugas 6: JavaScript dan Asynchronous JavaScript</h3>
+<a align="center" href="http://samuel-taniel-tugas.pbp.cs.ui.ac.id" >View Site</a>
 
 <a name="tugas-6"></a>
 <details>
@@ -1772,34 +1773,303 @@ Saya mengatur supaya tampilan tabelnya bagus dan sesuai urutannya pada teks-teks
 <a name="async-sync"></a>
 ## Perbedaan antara Asynchronous Programming dengan Synchronous Programming
 
+Pada synchronous web communication, pengguna hanya dapat melakukan beberapa task terlebih dahulu dan perlu diselesaikan untuk lanjut melakukan task lainnya, sementara itu ketika kita telpon dengan teman hanya bisa menunggu respons teman kita terlebih dahulu baru bisa melakukan telpon lainnya.
+
+Sementara itu, pada asynchronous web communication, pengguna dapat melakukan beberapa task selagi melakukan task lain yang akan memberikan hasil saling bersamaan selagi melakukan task tersebut, selagi teman kita ngetik kita masih bisa mengetik dan melakukan hal lainnya tanpa menunggu response dari pengguna lain adalah contoh asynchronous 
+
+Pada synchronous berbasis request dan respons, pada asinkronus merupakan event based.
+
+ref: https://www.quora.com/Between-Synchronous-and-Asynchronous-communication-which-one-is-the-preferred-type-for-Microservices-architecture
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <a name="paradigma-event"></a>
 ## Paradigma Event-Driven Programming
+
+Paradigma "event-driven programming" adalah pendekatan pemrograman di mana program merespons peristiwa atau kejadian tertentu yang terjadi, seperti klik tombol, input pengguna, atau peristiwa lainnya. Dalam paradigma ini, program tidak mengeksekusi perintah berurutan dari awal hingga akhir, tetapi berfokus pada menanggapi peristiwa yang terjadi dengan menjalankan fungsi tertentu atau tindakan yang sesuai dengan peristiwa tersebut.
+
+Penerapannya dalam tugas, AJAX di mana diberikan respons saat klik tombol atau mengirim request HTTP secara asinkron, dan program tertentu akan dijalankan. Contohnya saat klik tombol untuk menambahkan order kartu baru. Ketika tombol diklik, sebuah modal muncul dengan formulir yang akan diisi pengguna. Kemudian, saat pengguna mengklik tombol Add Product pada formulir, akan request AJAX POST untuk menambahkan item baru ke database. sehingga program tersebut terjadi secara dinamis.
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <a name="async-prog"></a>
 ## Penerapan Asynchronous Programming pada AJAX
-
+Contohnya pada penggunaan JavaScript asinkron untuk berkomunikasi dengan server tanpa harus memuat ulang seluruh halaman web. Sehingga halaman web tetap responsif/dinamis, dan pengguna dapat melanjutkan berinteraksi dengan halaman web tanpa harus menunggu permintaan server selesai. Contohnya yaitu seperti sebelumnya saat add product, atau saat delete product.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <a name="api-jquery"></a>
 ## Perbedaan Fetch API dan Library JQuery, Manakah yang Lebih Bagus?
 
+➡️ fetch() tidak akan ditolak pada status kesalahan HTTP, bahkan jika responsenya adalah HTTP 404 atau 500. tapi itu akan diselesaikan dengan normal, dan hanya akan ditolak pada kegagalan jaringan atau jika ada yang mencegah permintaan tersebut untuk diselesaikan.
+➡️ Secara default, fetch tidak akan mengirim atau menerima cookie apa pun dari server, sehingga mengakibatkan permintaan tidak terautentikasi jika situs bergantung pada menjaga sesi pengguna (untuk mengirim cookie, opsi init credentials harus diatur).
+➡️ Fetch API lebih ringan, sudah ada di browser modern, dan merupakan standar web, sehingga tidak memerlukan pustaka eksternal. Penggunaannya juga lebih modern dan sering digunakan dalam pengembangan web saat ini. 
+
+Pemilihan mana yang lebih bagus tergantung pada preferensi developer, tetapi menurut saya jika website/aplikasi yang dibuat tidak perlu autentikasi yang memadai maka Fetch API lebih bagus, sementara itu JQuery lebih cocok untuk website/aplikasi yang membutuhkan keamanan tingkat tinggi.
+
+referensi: https://stackoverflow.com/questions/43017576/what-is-the-difference-between-fetch-and-jquery-ajax
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <a name="step-by-step5"></a>
 ## Step by Step Checklist Tugas
 <div align="center">
-<a href="http://samuel-taniel-tutorial.pbp.cs.ui.ac.id">
+<a href="http://samuel-taniel-tugas.pbp.cs.ui.ac.id">
   <img src="main/templates/Pictures/Tugas6_Web.png" alt="To Pokemon Shop" width="500" height="300">
 </a>
 </div>
 
-- [X]  
+
+Mengubah tugas 5 yang telah dibuat sebelumnya menjadi menggunakan AJAX.
+
+ AJAX GET
+
+- [X] Ubahlah kode cards data item agar dapat mendukung AJAX GET.
+```
+<div id="product_cards" style="color: lightgray; margin-left: 30px; margin-right: 30px; background-color: black; width: 95%; border-radius: 25px;"></div>            
+```
+
+Pada kode tersebut digunakan id `product_cards` supaya bisa didukung AJAX GET
+
+- [X] Lakukan pengambilan task menggunakan AJAX GET.
+
+```
+async function getProducts() {
+    return fetch("{% url 'main:get_product_json' %}").then((res) => res.json())
+}
+```
+
+menggunakan fetch untuk membuat permintaan AJAX GET ke URL yang ditentukan oleh "{% url 'main:get_product_json' %}". Respon dari fetch kemudian diolah sebagai JSON dalam blok then
+
+ AJAX POST
+
+- [X] Buatlah sebuah tombol yang membuka sebuah modal dengan form untuk menambahkan item.
+
+```
+<button style="margin-left: 30px; margin-bottom: 30px;
+        background-color: #5ea8c1; border: 1px solid #e2c4c4; color: #f3d3d3; display: block; border-radius: 6px; width: 3in; font-size: 20px; align-content: center; margin-right: 4%;" 
+      type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Order Card Here using AJAX!</button>
+```
+data-bs-toggle="modal": data Bootstrap yang digunakan untuk menunjukkan bahwa tombol ini akan mengontrol modul pop-up;
+data-bs-target="#exampleModal": atribut data Bootstrap yang menentukan elemen target (dalam hal ini adalah modul pop-up dengan ID "exampleModal") yang akan ditampilkan saat tombol diklik;
+
+
+- [X] Modal di-trigger dengan menekan suatu tombol pada halaman utama. Saat penambahan item berhasil, modal harus ditutup dan input form harus dibersihkan dari data yang sudah dimasukkan ke dalam form sebelumnya.
+
+```
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Order New Pokemon Card!</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <form id="form" onsubmit="return false;">
+                  {% csrf_token %}
+                  <div class="mb-3">
+                      <label for="name" class="col-form-label" style="color: #181818;">Name: (Dropdown Box)</label>
+                      <select class="form-control" id="name" name="name">
+                        {% for choice in cards %}
+                            <option value="{{ choice.name }}">{{ choice.name }}</option>
+                        {% endfor %}
+                    </select>
+                  </div>
+                  <div class="mb-3">
+                      <label for="amount" class="col-form-label"style="color: #181818;">Amount:</label>
+                      <input type="number" class="form-control" id="amount" name="amount"></input>
+                  </div>
+                  <div class="mb-3">
+                      <label for="description" class="col-form-label" style="color: #181818;">Description:</label>
+                      <textarea class="form-control" id="description" name="description"></textarea>
+                  </div>
+              </form>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Product</button>
+          </div>
+        </div>
+  </div>
+</div>
+```
+
+```
+function addProduct() {
+    fetch("{% url 'main:add_product_ajax' %}", {
+        method: "POST",
+        body: new FormData(document.querySelector('#form'))
+    }).then(refreshProducts)
+
+    document.getElementById("form").reset()
+    return false
+}
+
+document.getElementById("button_add").onclick = addProduct
+```
+
+dengan `document.getElementById("button_add").onclick = addProduct` maka button dengan id button_add akan menjalankan function addProduct ketika ditekan buttonnya yang akan merest form ketika sudah ditekan
+
+- [X] Buatlah fungsi view baru untuk menambahkan item baru ke dalam basis data.
+
+Pada fungsi ini akan mengambil data dari method POST pada fungsi sebelumnya dari modal, dengan get, kemudian akan membuat produk baru seperti pada tugas sebelumnya
+
+```
+@csrf_exempt
+def add_product_ajax(request):
+    if request.method == 'POST':
+        name = request.POST.get("name")
+        amount = request.POST.get("amount")
+        description = request.POST.get("description")
+        user = request.user
+
+        cards = [
+            {
+                'picture': "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/c3dfdb24-369a-4251-9313-3bb185ea2453/dbowzl8-dbbc4631-6489-4bbb-ab7b-80a870341a9b.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2MzZGZkYjI0LTM2OWEtNDI1MS05MzEzLTNiYjE4NWVhMjQ1M1wvZGJvd3psOC1kYmJjNDYzMS02NDg5LTRiYmItYWI3Yi04MGE4NzAzNDFhOWIuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.9Xv2avCprYz5Hcru0i6m5NdJmiMYGjo123ea46m34GU",
+                'name': 'MewTwo',
+                'category': 'Psychic',
+                'price': 100000,
+                'amount': 1,
+                'description': "Mewtwo, the result of an experiment on Mew Pokemon by humans. It wants revenge on humanity, therefore there's only one of it in the world.",
+            },
+            ...
+        ]
+        
+        new_product = Product(name=name, amount=amount, description=description, user=user)
+
+        for card in cards:
+            if card['name'] == new_product.name:
+                picture = card['picture']
+                allow_range = card['amount']
+                if  int(new_product.amount) > allow_range:
+                    new_product.amount = allow_range
+                total_price = float(card['price']) * int(new_product.amount)
+                break
+        
+        new_product.allow_range = allow_range
+        new_product.picture = picture
+        new_product.price = total_price
+        if  int(new_product.amount) > new_product.allow_range:
+            new_product.amount = new_product.allow_range
+        new_product.save()
+
+        return HttpResponse(b"CREATED", status=201)
+
+    return HttpResponseNotFound()
+```
+
+- [X] Buatlah path /create-ajax/ yang mengarah ke fungsi view yang baru kamu buat.
+pada path ini akan merouting create product ajax dari fungsi views untuk digunakan pada main.html
+
+    path('create-product-ajax/', add_product_ajax, name='add_product_ajax'),
+    path('delete_product_ajax/<int:item_id>/', delete_product_ajax, name='delete_product_ajax'),    
+
+- [X] Hubungkan form yang telah kamu buat di dalam modal kamu ke path /create-ajax/.
+
+dihubungkan dengan function add product dengan memberikan fungsi pada button dengan ajax
+```
+function addProduct() {
+        fetch("{% url 'main:add_product_ajax' %}", {
+            method: "POST",
+            body: new FormData(document.querySelector('#form'))
+        }).then(refreshProducts)
+
+        document.getElementById("form").reset()
+        return false
+    }
+
+document.getElementById("button_add").onclick = addProduct
+```
+
+- [X] Lakukan refresh pada halaman utama secara asinkronus untuk menampilkan daftar item terbaru tanpa reload halaman utama secara keseluruhan.
+
+
+dengan fugnsi refresh product pada addproduct maka akan dilakukan secara dinamis atau asinkronus refresh daftar itemnya tanpa reload halaman utama karena di append secara langsung innerhtmlnya dan async function
+
+```
+async function refreshProducts() {
+        document.getElementById("product_cards").innerHTML = ""
+        const products = await getProducts()
+        var login_info = {
+          user: "{{ request.user.id }}",  
+        };
+
+        let htmlString = ``
+        products.forEach((item) => { 
+          if (item.fields.user == login_info.user){
+            htmlString += `
+            <div class="card" style="width: 100%; background:black; color: lightgray; vertical-align: middle;  display: grid;">
+              <div class="card-body" style="width: 90%; display: flex; align-items: center;">
+                <a href="javascript:void(0)" class="btn btn-primary" style="vertical-align: middle; margin-right: 40px; margin-left: 40px; background-color: rgb(255, 207, 207); border-radius: 10px; font-size: 10px; height: 35px; vertical-align: center; border-color: black" onclick="deleteItem(${item.pk})">❌</a>
+
+
+                <img class="card-img-top" src="${item.fields.picture}" alt="${item.fields.name}" style="width: 8%; margin-right: 20px; margin-left: 20px; ">
+                <h5 class="card-title" style="margin-right: 40px; margin-left: 40px; font-weight:bolder; font-size: 25px;">${item.fields.name}</h5>
+                <p class="card-text" style="margin-right: 20px; margin-left: 20px; ">${item.fields.description}</p>
+
+                <a href="/decrease_item/${item.pk}" class="btn btn-primary" style="vertical-align: middle; margin-right: 10px; margin-left: 40px; background-color: rgb(255, 207, 207); border-radius: 10px; font-size: 10px; height: 35px; vertical-align: center; border-color: black">➖</a>
+                <p class="card-text" style="margin-right: 0px; margin-left: 0px; ">${item.fields.amount}</p>
+                <a href="/increase_item/${item.pk}" class="btn btn-primary" style="vertical-align: middle; margin-right: 40px; margin-left: 10px; background-color: rgb(197, 255, 201); border-radius: 10px; font-size: 10px; height: 35px; vertical-align: center; border-color: black">➕</a>
+
+                <p class="card-text" style="margin-right: 20px; margin-left: 20px; ">$${item.fields.price}</p>
+                <p class="card-text" style="margin-right: 20px; margin-left: 20px; ">${item.fields.date_added}</p>
+              </div>
+            </div>`;
+        }
+      }); 
+     
+        document.getElementById("product_cards").innerHTML = htmlString
+    }
+
+```
+
+- [X] Melakukan perintah collectstatic.
+
+`python manage.py collecctstatic` dan dikumpulkna semua file static pada suatu file 
+
+- [X] Menambahkan fungsionalitas hapus dengan menggunakan AJAX DELETE
+
+```
+<a href="javascript:void(0)" class="btn btn-primary" style="vertical-align: middle; margin-right: 40px; margin-left: 40px; background-color: rgb(255, 207, 207); border-radius: 10px; font-size: 10px; height: 35px; vertical-align: center; border-color: black" onclick="deleteItem(${item.pk})">❌</a>
+```
+
+```
+ async function deleteItem(itemId) {
+      const url = `/delete_product_ajax/${itemId}`;  // Use backticks for string interpolation
+      fetch(url, {
+          method: "DELETE",
+      }).then(refreshProducts);
+
+      return false;
+    }
+```
+
+```
+@csrf_exempt
+def delete_product_ajax(request, item_id):
+    if request.method == 'DELETE':
+        try:
+            product = Product.objects.get(pk=item_id)
+            product.delete()
+            response_data = {'message': 'DELETED'}
+            status_code = 201
+            return HttpResponse(b"DELETED", status=201)
+        except:
+            return HttpResponseNotFound()
+
+    return HttpResponseNotFound()
+```
+
+```
+path('delete_product_ajax/<int:item_id>/', delete_product_ajax, name='delete_product_ajax'),  
+```
+
+pada ketiga hal diatas dimasukkan idnya deleteitem pada button ketika onclick, kemudian dibuat async function sehingga dilakukannya secara dinamis/asinkronus, pada delete hampir sama seperti method post tetpai menggunakan AJAX DELETE.
+mohon maaf jika ada kesalahan terima kasih :D
+
+<a align="center" href="http://samuel-taniel-tugas.pbp.cs.ui.ac.id" >View Site</a>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
   </ol>
 </details>

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect, HttpResponse, HttpResponseNotFound
+from django.http import HttpResponseRedirect, HttpResponse, HttpResponseNotFound, JsonResponse
 from django.core import serializers
 from main import forms
 from django.urls import reverse
@@ -331,9 +331,23 @@ def add_product_ajax(request):
         if  int(new_product.amount) > new_product.allow_range:
             new_product.amount = new_product.allow_range
         new_product.save()
-        new_product.save()
 
         return HttpResponse(b"CREATED", status=201)
+
+    return HttpResponseNotFound()
+
+
+@csrf_exempt
+def delete_product_ajax(request, item_id):
+    if request.method == 'DELETE':
+        try:
+            product = Product.objects.get(pk=item_id)
+            product.delete()
+            response_data = {'message': 'DELETED'}
+            status_code = 201
+            return HttpResponse(b"DELETED", status=201)
+        except:
+            return HttpResponseNotFound()
 
     return HttpResponseNotFound()
 

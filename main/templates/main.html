@@ -113,7 +113,7 @@
           <a class="topmenu" href="#pokemon_cards">Cards</a>
           <a class="topmenu" href="#order">Order</a>
           <a class="login" href="{% url 'main:logout' %}">
-            <button >
+            <button>
                 Logout
             </button>
           </a>
@@ -187,22 +187,25 @@
     </section>
 
     <!-- Order Form -->
+    
     <section id="order">
+      
       <h2 style="color: lightgray; margin-left: 20px;">Order</h2>
       <div class="flex_center">
         <fieldset>
-          <legend class="introduction" style="color: lightgray; margin-left: 30px;">Order List</legend>    
-              {% if last_product %}
-              <h4 style="color: lightgray; margin-left: 30px; font-size: 20px;">
-                  Thank you for your order! You have ordered {{ last_product.amount }} {{ last_product.name }} card with a total price of ${{ last_product.price }} at {{ last_product.date_added }}.
-                  A reminder for buyers, you are in a waitlist order. First Come First Served. Meanwhile, you can check other cards! We will contact you as soon as possible!
-              </h4>
-              {% endif %}
-              {% if product_amount %}
-              <h5 style="color: lightgray; margin-left: 30px;">You have ordered {{ product_amount }} in total.</h5>
-              {% endif %}
-            <table id="product_table" style="color: lightgray; margin-left: 30px; background-color: black; width: 90%; border-radius: 25px;"></table>
-            
+          <div style="background-color: #6687c9; margin-left: 30px; width: 95%; border-radius: 15px; margin-right: 30px; padding-top: 10px; padding-bottom: 40px;">
+            <legend class="introduction" style="color: lightgray; margin-left: 30px;">Order List</legend>    
+            {% if last_product %}
+            <h4 style="color: lightgray; margin-left: 30px; font-size: 20px; margin-right: 30px;">
+                Thank you for your order! You have ordered {{ last_product.amount }} {{ last_product.name }} card with a total price of ${{ last_product.price }} at {{ last_product.date_added }}.
+                A reminder for buyers, you are in a waitlist order. First Come First Served. Meanwhile, you can check other cards! We will contact you as soon as possible!
+            </h4>
+            {% endif %}
+            {% if product_amount %}
+            <h5 style="color: lightgray; margin-left: 30px;">You have ordered {{ product_amount }} in total.</h5>
+            {% endif %}
+          </div>
+            <div id="product_cards" style="color: lightgray; margin-left: 30px; margin-right: 30px; background-color: black; width: 95%; border-radius: 25px;"></div>            
         </fieldset>
       </div>
     </section>
@@ -210,15 +213,7 @@
     <br />
     <div style="display: flex;">
       <button style="margin-left: 30px; margin-bottom: 30px;
-        background-color: #5ea8c1;
-        border: 1px solid #e2c4c4;
-        color: #f3d3d3;
-        display: block;
-        border-radius: 6px;
-        width: 3in;
-        font-size: 20px;
-        align-content: center;
-        margin-right: 4%;" 
+        background-color: #5ea8c1; border: 1px solid #e2c4c4; color: #f3d3d3; display: block; border-radius: 6px; width: 3in; font-size: 20px; align-content: center; margin-right: 4%;" 
       type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Order Card Here using AJAX!</button>
     
       <a class="order-card" href="{% url 'main:create_product' %}">
@@ -228,7 +223,7 @@
       </a>
     </div>
     
-
+    
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
           <div class="modal-content">
@@ -264,57 +259,55 @@
             </div>
         </div>
       </div>
+      
   <script>
     async function getProducts() {
         return fetch("{% url 'main:get_product_json' %}").then((res) => res.json())
     }
 
     async function refreshProducts() {
-        document.getElementById("product_table").innerHTML = ""
+        document.getElementById("product_cards").innerHTML = ""
         const products = await getProducts()
         var login_info = {
           user: "{{ request.user.id }}",  
         };
 
-        let htmlString = `<tr style="background-color: #5ea8c1;">
-            <th style="text-align: center; padding: 15px;">Remove</th>
-            <th style="text-align: center; padding: 15px;">Display</th>
-            <th style="text-align: center; padding: 15px;">Name</th>
-            <th style="text-align: center; padding: 15px;">Amount</th>
-            <th style="text-align: center; padding: 15px;">Price (USD)</th>
-            <th style="text-align: center; padding: 15px;">Description</th>
-            <th style="text-align: center; padding: 15px;">Date Added</th>
-        </tr>`
+        let htmlString = ``
         products.forEach((item) => { 
           if (item.fields.user == login_info.user){
-            htmlString += `<tr>
-                <td style="text-align: center; padding: 15px;">
-                    <a href="/delete_item/${item.pk}">
-                        <button style="background-color: rgb(255, 207, 207); border-radius: 25px; font-size: 10px">❌</button>
-                    </a>
-                </td>
-                <td style="text-align: center; padding: 15px;">
-                    <img src="${item.fields.picture}" alt="${item.fields.name}" width="100" height="150"/>
-                </td>
-                <td style="text-align: center; padding: 15px;"><h4>${item.fields.name}</h4></td>
-                <td style="text-align: center; padding: 15px;">
-                    <a href="/decrease_item/${item.pk}">
-                        <button style="background-color: rgb(255, 207, 207); border-radius: 25px; font-size: 10px">➖</button>
-                    </a>
-                    <a>${item.fields.amount}</a>
-                    <a href="/increase_item/${item.pk}">
-                        <button style="background-color: rgb(197, 255, 201); border-radius: 25px; font-size: 10px">➕</button>
-                    </a>
-                </td>
-                <td style="text-align: center; padding: 15px;">${item.fields.price}</td>
-                <td style="text-align: center; padding: 15px;">${item.fields.description}</td>
-                <td style="text-align: center; padding: 15px;">${item.fields.date_added}</td>
-            </tr>`;
+            htmlString += `
+            <div class="card" style="width: 100%; background:black; color: lightgray; vertical-align: middle;  display: grid;">
+              <div class="card-body" style="width: 90%; display: flex; align-items: center;">
+                <a href="javascript:void(0)" class="btn btn-primary" style="vertical-align: middle; margin-right: 40px; margin-left: 40px; background-color: rgb(255, 207, 207); border-radius: 10px; font-size: 10px; height: 35px; vertical-align: center; border-color: black" onclick="deleteItem(${item.pk})">❌</a>
+
+
+                <img class="card-img-top" src="${item.fields.picture}" alt="${item.fields.name}" style="width: 8%; margin-right: 20px; margin-left: 20px; ">
+                <h5 class="card-title" style="margin-right: 40px; margin-left: 40px; font-weight:bolder; font-size: 25px;">${item.fields.name}</h5>
+                <p class="card-text" style="margin-right: 20px; margin-left: 20px; ">${item.fields.description}</p>
+
+                <a href="/decrease_item/${item.pk}" class="btn btn-primary" style="vertical-align: middle; margin-right: 10px; margin-left: 40px; background-color: rgb(255, 207, 207); border-radius: 10px; font-size: 10px; height: 35px; vertical-align: center; border-color: black">➖</a>
+                <p class="card-text" style="margin-right: 0px; margin-left: 0px; ">${item.fields.amount}</p>
+                <a href="/increase_item/${item.pk}" class="btn btn-primary" style="vertical-align: middle; margin-right: 40px; margin-left: 10px; background-color: rgb(197, 255, 201); border-radius: 10px; font-size: 10px; height: 35px; vertical-align: center; border-color: black">➕</a>
+
+                <p class="card-text" style="margin-right: 20px; margin-left: 20px; ">$${item.fields.price}</p>
+                <p class="card-text" style="margin-right: 20px; margin-left: 20px; ">${item.fields.date_added}</p>
+              </div>
+            </div>`;
         }
       }); 
-        
-        document.getElementById("product_table").innerHTML = htmlString
+     
+        document.getElementById("product_cards").innerHTML = htmlString
     }
+
+    async function deleteItem(itemId) {
+      const url = `/delete_product_ajax/${itemId}`;  // Use backticks for string interpolation
+      fetch(url, {
+          method: "DELETE",
+      }).then(refreshProducts);
+
+      return false;
+    }
+
 
     function addProduct() {
         fetch("{% url 'main:add_product_ajax' %}", {
