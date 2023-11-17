@@ -1825,7 +1825,7 @@ Mengubah tugas 5 yang telah dibuat sebelumnya menjadi menggunakan AJAX.
 
  AJAX GET
 
-- [X] Ubahlah kode cards data item agar dapat mendukung AJAX GET.
+- [X] Ubahlah kode cards data item agar dapat mendukung AJAX GET--
 ```
 <div id="product_cards" style="color: lightgray; margin-left: 30px; margin-right: 30px; background-color: black; width: 95%; border-radius: 25px;"></div>            
 ```
