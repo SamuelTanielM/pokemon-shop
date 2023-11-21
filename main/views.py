@@ -109,7 +109,7 @@ def show_main(request):
         'products': products,
         'last_product': last_product,
         'product_amount': total_amount,
-        'last_login': request.COOKIES['last_login'],
+        'last_login': request.COOKIES.get('last_login', "Unknown"), 
     }
 
     for product in products:
