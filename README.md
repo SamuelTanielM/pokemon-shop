@@ -1823,7 +1823,7 @@ referensi: https://stackoverflow.com/questions/43017576/what-is-the-difference-b
 
 Mengubah tugas 5 yang telah dibuat sebelumnya menjadi menggunakan AJAX.
 
- AJAX GET
+ AJAX GET.
 
 - [X] Ubahlah kode cards data item agar dapat mendukung AJAX GET--
 ```
