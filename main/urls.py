@@ -8,8 +8,10 @@ urlpatterns = [
     path('create-product', create_product, name='create_product'),
     path('xml/', show_xml, name='show_xml'), 
     path('json/', show_json, name='show_json'), 
+    path('json_user/', show_json_by_user, name='show_json_by_user'), 
     path('xml/<int:id>/', show_xml_by_id, name='show_xml_by_id'),
     path('json/<int:id>/', show_json_by_id, name='show_json_by_id'), 
+    
     path('delete', delete, name="delete"),
     path('register/', register, name='register'), 
     path('login/', login_user, name='login'),
